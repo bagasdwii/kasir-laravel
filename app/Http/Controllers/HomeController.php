@@ -13,4 +13,18 @@ class HomeController extends Controller
         
 
     }
+    public function about(){
+        return view('about',[
+            'title'=>'About'
+        ]);
+        
+
+    }
+    public function contact(){
+        return view('contact',[
+            'title'=>'Contact Us'
+        ]);
+        
+
+    }
 }

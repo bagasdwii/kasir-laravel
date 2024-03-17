@@ -28,13 +28,13 @@
                         <a class="nav-link{{ ($title === "Home")?' active':'' }}" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link {{ ($title === "About")?' active':'' }}" href="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-disabled="true">Contact Us</a>
+                        <a class="nav-link {{ ($title === "Contact Us")?' active':'' }}" href="/contact">Contact Us</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-success" type="submit"><a href="/login"  class="text-decoration-none text-white">Login</a></button>
+                <button class="btn btn-dark" type="submit"><a href="/login"  class="text-decoration-none text-white">Login</a></button>
             </div>
         </div>
     </nav>
