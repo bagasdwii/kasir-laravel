@@ -1,6 +1,6 @@
 @extends('layouts.homenav')
 @section('containersatu')
-<div class="text-center d-flex align-items-center vh-100">
+{{-- <div class="text-center d-flex align-items-center vh-100">
   @if (session()->has('success'))
   <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ session('success') }}
@@ -12,7 +12,7 @@
       {{ session('loginError') }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-  @endif
+  @endif --}}
   <main class="form-signin w-100 m-auto">
       <form action="/login" method="post">
           @csrf
