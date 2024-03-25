@@ -12,6 +12,7 @@ class KaryawanController extends Controller
         $loggedInOwner = Auth::user()->email; // Mengambil owner dari user yang sedang login
         $data = User::where('owner', $loggedInOwner)->get(); // Mengambil semua data user dengan owner yang sesuai
         $loggedInUser = Auth::user(); // Mengambil data user yang sedang login
+       
         return view('karyawan', compact('data', 'loggedInUser')); // Mengirim data ke view
     }
     

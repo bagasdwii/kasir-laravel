@@ -45,7 +45,7 @@ Route::get('/barang', [BarangController::class, 'barang'])->name('barang')->midd
 Route::post('/tambahbarang', [BarangController::class, 'tambahbarang']);
 Route::get('/tampilbarang/{id}', [BarangController::class, 'tampilbarang'])->middleware('auth');
 Route::post('/updatebarang/{id}', [BarangController::class, 'updatebarang']);
-Route::get('/deletebarang/{id}', [BarangController::class, 'delete'])->middleware('auth');
+Route::get('/deletebarang/{id}', [BarangController::class, 'deletebarang'])->middleware('auth');
 
 
 Route::post('/tambahcategori', [BarangController::class, 'tambahcategori']);
