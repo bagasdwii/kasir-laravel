@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('hargaJual');
             $table->string('stok');
             $table->timestamps();
+            // $table->unique(array('user_id','namaBarang','kodeBarang'));
         });
     }
 

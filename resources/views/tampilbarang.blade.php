@@ -25,7 +25,7 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Quick Example</h3>
+                            <h3 class="card-title">Edit Barang</h3>
                         </div>
 
 
@@ -34,7 +34,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="category_id">Kategori Barang</label>
-                                    <select name="categori_id" id="category_id" class="form-control select2" style="width: 100%;">
+                                    <select name="categori_id" id="category_id" class="form-control select2" style="width: 100%;" required>
                                         <option selected="selected"></option>
                                         @foreach ($dCategori as $categori)
                                             <option value="{{ $categori->id }}">{{ $categori->namaCategori }}</option>
@@ -44,18 +44,18 @@
                                 <div class="form-group">
                                     <label for="namaBarang">Nama Barang</label>
                                     <input type="text" name="namaBarang" class="form-control" id="namaBarang"
-                                        placeholder="Masukan Nama Barang" value="{{$data->namaBarang}}">
+                                        placeholder="Masukan Nama Barang" value="{{$data->namaBarang}}" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="kodeBarang">Kode Barang</label>
                                     <input type="text" name="kodeBarang" class="form-control" id="kodeBarang"
-                                        placeholder="Kode Barang" value="{{$data->kodeBarang}}">
+                                        placeholder="Kode Barang" value="{{$data->kodeBarang}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="hargaBeli">Harga Beli</label>
                                     <input type="number" name="hargaBeli" class="form-control" id="hargaBeli"
-                                        placeholder="Harga Beli" value="{{$data->hargaBeli}}">
+                                        placeholder="Harga Beli" value="{{$data->hargaBeli}}" required>
                                 </div>
                                 {{-- <div class="form-group">
                                     <label for="role">Role</label>
@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <label for="hargaJual">Harga Jual</label>
                                     <input type="number" name="hargaJual" class="form-control" id="hargaJual"
-                                        placeholder="Harga Jual" value="{{$data->hargaJual}}">
+                                        placeholder="Harga Jual" value="{{$data->hargaJual}}" required>
                                 </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>

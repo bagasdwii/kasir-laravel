@@ -25,7 +25,7 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Quick Example</h3>
+                            <h3 class="card-title">Edit Karyawan</h3>
                         </div>
 
 
@@ -40,22 +40,22 @@
                                 <div class="form-group">
                                     <label for="name">Nama</label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Masukan Nama" value="{{$data->name}}">
+                                        placeholder="Masukan Nama" value="{{$data->name}}" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="email">Email address</label>
                                     <input type="email" name="email" class="form-control" id="email"
-                                        placeholder="Enter email" value="{{$data->email}}">
+                                        placeholder="Enter email" value="{{$data->email}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" class="form-control" id="password"
-                                        placeholder="Password" value="{{$data->password}}">
+                                        placeholder="Password" value="{{$data->password}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
-                                    <select class="form-control" name="role">
+                                    <select class="form-control" name="role" required>
                                     <option selected>{{$data->role}}</option>
                                     <option value="staff">Staff</option>
                               
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" required>
                                     <option selected>{{$data->status}}</option>
                                     <option value="aktif">Aktif</option>
                                     <option value="deaktif">Deaktif</option>

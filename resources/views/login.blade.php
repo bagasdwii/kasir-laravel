@@ -13,26 +13,25 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif --}}
-  <main class="form-signin w-100 m-auto">
-      <form action="/login" method="post">
-          @csrf
-          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+  <main class="form-signin w-100 m-auto text-center">
+    <form action="/login" method="post">
+        @csrf
+        <h1 class="h3 mb-3 fw-normal">Please Login</h1>
 
-          <div class="form-floating">
-              <input type="email" class="form-control" name="email" id="email" placeholder="email@example.com"
-                  required>
-              <label for="email">Email address</label>
-          </div>
-          <div class="form-floating">
-              <input type="password" name="password" class="form-control" id="password" placeholder="Password"
-                  required>
-              <label for="password">Password</label>
-          </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-
-      </form>
-      <small><a href="/registrasi">registrasi</a></small>
-  </main>
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="email" placeholder="email@example.com" required>
+            <label for="email">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+            <label for="password">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Login</button>
+    </form>
+    <div class="mt-3">
+        <small><a href="/registrasi">Registrasi untuk admin</a></small>
+    </div>
+</main>
 
 </div>
 @endsection

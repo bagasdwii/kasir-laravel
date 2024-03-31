@@ -17,7 +17,14 @@
             </div>
         </div>
     </section>
-
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show container" role="alert" >
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <section class="content">
         <div class="container-fluid">
             <div class="">
@@ -26,7 +33,7 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Quick Example</h3>
+                            <h3 class="card-title">Tambah Karyawan</h3>
                         </div>
 
 
@@ -41,29 +48,29 @@
                                 <div class="form-group">
                                     <label for="name">Nama</label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Masukan Nama">
+                                        placeholder="Masukan Nama" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="email">Email address</label>
                                     <input type="email" name="email" class="form-control" id="email"
-                                        placeholder="Enter email">
+                                        placeholder="Enter email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" class="form-control" id="password"
-                                        placeholder="Password">
+                                        placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
-                                    <select class="form-control" name="role">
+                                    <select class="form-control" name="role" required>
                                     <option value="staff">Staff</option>
                               
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" required>
                                     <option></option>
                                     <option value="aktif">Aktif</option>
                                     <option value="deaktif">Deaktif</option>

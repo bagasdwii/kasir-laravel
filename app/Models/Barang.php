@@ -13,4 +13,8 @@ class Barang extends Model
     public function categori(){
         return $this->belongsTo(Categori::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

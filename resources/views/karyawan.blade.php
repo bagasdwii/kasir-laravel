@@ -17,7 +17,14 @@
             </div>
         </div>
     </section>
-
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show container" role="alert" >
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -26,7 +33,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col">
-                                    <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                                    <h3 class="card-title">Data Karyawan Toko</h3>
                                 </div>
                                 <div class="col-auto">
                                     <a href="/tambahkaryawan" class="btn btn-success btn-md">Tambah</a>

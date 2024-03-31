@@ -10,7 +10,7 @@ class KaryawanController extends Controller
 {
     public function karyawan(){
         $loggedInOwner = Auth::user()->email; // Mengambil owner dari user yang sedang login
-        $data = User::where('owner', $loggedInOwner)->get(); // Mengambil semua data user dengan owner yang sesuai
+        $data = User::where('owner', $loggedInOwner)->orderBy('created_at', 'desc')->get(); // Mengambil semua data user dengan owner yang sesuai
         $loggedInUser = Auth::user(); // Mengambil data user yang sedang login
        
         return view('karyawan', compact('data', 'loggedInUser')); // Mengirim data ke view
@@ -22,11 +22,19 @@ class KaryawanController extends Controller
      
     }
     public function tambahdata(Request $request){
-        // dd($request->all());
+        $request->validate([
+
+            'email' => 'required|email|unique:users,email' // Validasi untuk email unik
+            // Anda dapat menambahkan aturan validasi lain di sini
+        ]);
+    
+        // Buat entri data jika validasi berhasil
         User::create($request->all());
-        return redirect()->route('karyawan');
-       
+    
+        // Redirect ke halaman karyawan dengan pesan berhasil
+        return redirect()->route('karyawan')->with('success', 'Data berhasil ditambahkan.');
     }
+    
     public function tampilkaryawan($id){
         $data = User::find($id);
         $loggedInUser = Auth::user();
