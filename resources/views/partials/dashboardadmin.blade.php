@@ -26,6 +26,14 @@
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="/supplier" class="nav-link {{ request()->is('supplier') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-store"></i>
+                <p>
+                    Supplier
+                </p>
+            </a>
+        </li>
         {{--  <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon far fa-image"></i>
@@ -51,7 +59,7 @@
         <li class="nav-item">
             <form id="logout-form" action="/logout" method="POST">
                 @csrf
-                <button type="submit" class="nav-link btn-danger">
+                <button type="submit" class="nav-link btn-danger text-left">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
                         Logout

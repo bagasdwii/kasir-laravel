@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class KaryawanController extends Controller
 {
@@ -22,12 +23,16 @@ class KaryawanController extends Controller
      
     }
     public function tambahdata(Request $request){
-        $request->validate([
 
-            'email' => 'required|email|unique:users,email' // Validasi untuk email unik
-            // Anda dapat menambahkan aturan validasi lain di sini
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'email', 'unique:users', 'max:255']
+            // tambahkan aturan validasi lainnya di sini
         ]);
+        if ($validator->fails()) {
     
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Data dengan nama dan kode barang yang sama sudah ada.');
+
+        }
         // Buat entri data jika validasi berhasil
         User::create($request->all());
     

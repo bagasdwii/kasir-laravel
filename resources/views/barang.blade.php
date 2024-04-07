@@ -124,7 +124,7 @@
                 </div>
                 <form method="post" action="/tambahcategori">
                     @csrf
-                    <input type="hidden" name="owner" id="owner" value="{{ $loggedInUser->email }}">
+                    <input type="hidden" name="user_id" id="user_id" value="{{ $loggedInUser->id }}">
                     <div class="modal-body">
                         <div class="card card-info">
                             <div class="card-body">

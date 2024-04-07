@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('categoris', function (Blueprint $table) {
             $table->id();
             $table->string('namaCategori');
-            $table->string('owner');
+            $table->foreignId('user_id');
             $table->timestamps();
+            $table->unique(array('user_id','namaCategori'));
+
         });
     }
 

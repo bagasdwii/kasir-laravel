@@ -19,11 +19,11 @@
     </section>
     @if(session('error'))
     <div class="alert alert-danger alert-dismissible fade show container" role="alert" >
-        {{ session('success') }}
+        {{ session('error') }}
         <button type="button" class="close" data-dismiss="alert"  aria-label="Close">
             <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        </button>
+    </div>
     @endif
     <section class="content">
         <div class="container-fluid">
@@ -48,13 +48,13 @@
                                 <div class="form-group">
                                     <label for="name">Nama</label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Masukan Nama" required>
+                                        placeholder="Masukan Nama" required value="{{ old('name') }}">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="email">Email address</label>
                                     <input type="email" name="email" class="form-control" id="email"
-                                        placeholder="Enter email" required>
+                                        placeholder="Enter email" required  value="{{ old('email') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status" required>
-                                    <option></option>
+                                    <option ></option>
                                     <option value="aktif">Aktif</option>
                                     <option value="deaktif">Deaktif</option>
 

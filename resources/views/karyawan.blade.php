@@ -38,8 +38,10 @@
                                 <div class="col-auto">
                                     <a href="/tambahkaryawan" class="btn btn-success btn-md">Tambah</a>
                                 </div>
+                               
                             </div>
                         </div>
+                        
 
 
                         <div class="card-body ">

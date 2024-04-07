@@ -1,49 +1,8 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-class BarangController extends Controller
-{
-    public function barang(){
-        $loggedInOwner = Auth::user()->email; // Mengambil owner dari user yang sedang login
-        $data = User::where('owner', $loggedInOwner)->get(); // Mengambil semua data user dengan owner yang sesuai
-        $loggedInUser = Auth::user(); // Mengambil data user yang sedang login
-        return view('barang', compact('data', 'loggedInUser')); // Mengirim data ke view
-    }
-    
-    public function tambah(){
-        $loggedInUser = Auth::user();
-        return view('/tambahbarang')->with('loggedInUser', $loggedInUser);
-     
-    }
-    public function tambahdata(Request $request){
-        // dd($request->all());
-        User::create($request->all());
-        return redirect()->route('barang');
-       
-    }
-    public function tampilbarang($id){
-        $data = User::find($id);
-        $loggedInUser = Auth::user();
-
-        // dd($data);
-        return view('/tampilbarang', compact('data', 'loggedInUser'));
-       
-    }
-    public function updatebarang(Request $request, $id){
-        $data = User::find($id);
-        $data->update($request->all());
-        return redirect()->route('barang');
-
-    }
-    public function delete($id){
-        $data = User::find($id);
-        $data->delete();
-        return redirect()->route('barang');
-
-    }
-}
+<div class="input-group input-group-sm" style="width: 150px;">
+    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+    <div class="input-group-append">
+        <button type="submit" class="btn btn-default">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</div>
