@@ -34,28 +34,34 @@
                 </p>
             </a>
         </li>
-        {{--  <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
+        <li class="nav-item">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-shopping-cart"></i>
                 <p>
-                    Barang <i class="right fas fa-angle-left"></i>
+                    Transaksi <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/pembelian" class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Kategori</p>
+                        <p>Pembelian</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/penjualan" class="nav-link {{ request()->is('penjualan') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Barang</p>
+                        <p>Penjualan</p>
+                    </a>
+                </li>
+                <li class="nav-item {{ request()->is('penjualan') ? 'active' : '' }}">
+                    <a href="/laporan" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Laporan</p>
                     </a>
                 </li>
             </ul>
-        </li>--}}
+        </li>
         <li class="nav-item">
             <form id="logout-form" action="/logout" method="POST">
                 @csrf

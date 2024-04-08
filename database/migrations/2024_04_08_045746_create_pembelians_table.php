@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('pembelians', function (Blueprint $table) {
             $table->id();
-            $table->string('namaToko');
-            $table->string('noKontak');
-            $table->string('alamat');
             $table->foreignId('user_id');
+            $table->foreignId('supplier_id');
+            $table->string('noFaktur');
+            $table->date('tanggal');
+            $table->integer('totalHarga');
             $table->timestamps();
-            $table->unique(array('user_id','noKontak','namaToko','alamat'));
+            $table->unique(array('user_id','supplier_id','noFaktur'));
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('pembelians');
     }
 };

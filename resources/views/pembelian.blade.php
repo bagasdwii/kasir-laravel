@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Data Supplier</li>
+                        <li class="breadcrumb-item active">Data Pembelian</li>
                     </ol>
                 </div>
             </div>
@@ -35,20 +35,20 @@
     @endif
 
     @if(auth()->check() && auth()->user()->role === 'admin')
-        @include('partials.supplieradmin')
+        @include('partials.pembelianadmin')
     @elseif(auth()->check() && auth()->user()->role === 'staff')
-        @include('partials.supplierstaff')
+        @include('partials.pembelianstaff')
     @endif
     <div class="modal fade" id="modal-lg">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Data Supplier</h4>
+                    <h4 class="modal-title">Tambah Data Pembelian</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="/tambahsupplier">
+                <form method="post" action="/tambahpembelian">
                     @csrf
                     <input type="hidden" name="user_id" id="user_id" value="{{ $loggedInUser->id }}">
                     <div class="modal-body">
@@ -58,31 +58,39 @@
                                    
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Nama Toko</label>
-                                            <input type="text" name="namaToko" id="namaToko" class="form-control"
-                                                placeholder="Nama Toko" required>
+                                            <label for="supplier_id">Nama Toko</label>
+                                            <select name="supplier_id" id="supplier_id" class="form-control select2" style="width: 100%;" required>
+                                                <option selected="selected"></option>
+                                                @foreach ($dSupplier as $supplier)
+                                                    <option value="{{ $supplier->id }}">{{ $supplier->namaToko }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
+                                  
+                                        
                                         <div class="form-group">
-                                            <label>Alamat</label>
-                                            <textarea type="text" name="alamat" id="alamat" class="form-control"
-                                                placeholder="Alamat" rows="3" required></textarea>
-                                               
+                                            <label>Kode Faktur</label>
+                                            <input type="text" name="noFaktur" id="noFaktur" class="form-control"
+                                                placeholder="Kode Faktur" required>
                                         </div>
-                                       
-                                
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="card card-info">
-                                  
+                                    <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Tanggal</label>
+                                        <input type="date" name="tanggal" id="tanggal" class="form-control"
+                                            placeholder="Tanggal" required>
+                                    </div>
+                                    </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>No Kontak</label>
-                                            <input type="text" name="noKontak" id="noKontak" class="form-control"
-                                                placeholder="No Kontak" required>
+                                            <label>Total Beli</label>
+                                            <input type="number" name="totalHarga" id="totalHarga" class="form-control"
+                                                placeholder="Total Beli" value="0" readonly>
                                         </div>
-                                     
                                     </div>
                                 </div>
                             </div>
@@ -97,9 +105,9 @@
         </div>
     </div>
     
-
-    @foreach ($data as $supplier)
-    <div class="modal fade" id="deleteModal{{$supplier->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   
+    @foreach ($data as $pembelian)
+    <div class="modal fade" id="deleteModal{{$pembelian->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -109,17 +117,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus "{{ $supplier->namaToko }}" ini?
+                    Apakah Anda yakin ingin menghapus "{{ $pembelian->noFaktu }}" ini?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <a href="/deletesupplier/{{ $supplier->id }}" class="btn btn-danger">Hapus</a>
+                    <a href="/deletepembelian/{{ $pembelian->id }}" class="btn btn-danger">Hapus</a>
                 </div>
             </div>
         </div>
     </div>
     @endforeach
-  
+    
+    
     
   
 </div>

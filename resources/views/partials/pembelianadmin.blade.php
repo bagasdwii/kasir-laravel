@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
-                                <h3 class="card-title">Data Supplier</h3>
+                                <h3 class="card-title">Data Belanja Supplier</h3>
                             </div>
                             
                             <div class="col-auto">
@@ -20,13 +20,14 @@
 
                     <div class="card-body ">
                         
+                        
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Toko</th>
-                                    <th>No Kontak</th>
-                                    <th>Alamat</th>
+                                    <th>Kode Faktur</th>
+                                    <th>Total Beli</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -34,15 +35,16 @@
                                 @php
                                 $no =1;
                                 @endphp
-                                @foreach ($data as $supplier)
+                                @foreach ($data as $pembelian)
                                 <tr>
                                     <th> {{ $no++ }}</th>
-                                    <td>{{ $supplier->namaToko }}</td>
-                                    <td>{{ $supplier->noKontak }}</td>
-                                    <td>{{ $supplier->alamat }}</td>
+                                    <td>{{ $pembelian->supplier->namaToko }}</td>
+                                    <td>{{ $pembelian->noFaktur }}</td>
+                                    <td>{{ $pembelian->totalHarga }}</td>
                                     <td>
-                                        <a href="/tampilsupplier/{{ $supplier->id }}" class="btn btn-info"> Edit </a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$supplier->id}}">
+                                        <a href="/detailpembelian/{{ $pembelian->id }}" class="btn btn-warning"> Detail </a>
+                                        <a href="/tampilpembelian/{{ $pembelian->id }}" class="btn btn-info"> Edit </a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$pembelian->id}}">
                                             Hapus
                                         </button>
 
@@ -56,8 +58,8 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Toko</th>
-                                    <th>No Kontak</th>
-                                    <th>Alamat</th>
+                                    <th>Kode Faktur</th>
+                                    <th>Total Beli</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>

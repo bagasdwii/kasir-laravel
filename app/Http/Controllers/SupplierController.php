@@ -33,7 +33,7 @@ class SupplierController extends Controller
     }
 
 
-    // }
+    
     public function tambahsupplier(Request $request){
         $user_id = $request->user()->id;
     
@@ -51,18 +51,7 @@ class SupplierController extends Controller
                     ->where('user_id', $user_id)
              
             ],
-            'namaSupplier' => [
-                'required',
-                'string',
-                'max:255',
-                // Rule::unique('barangs')->where(function ($query) use ($user_id, $categori_id) {
-                //     return $query->where('user_id', $user_id)
-                //                  ->where('categori_id', $categori_id);
-                // }),
-                Rule::unique('suppliers')
-                    ->where('user_id', $user_id)
-               
-            ],
+
             'noKontak' => [
                 'required',
                 'string',
@@ -91,14 +80,13 @@ class SupplierController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Data dengan nama dan kode barang yang sama sudah ada.');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Data dengan nama TOKO sudah ada.');
         }
     
         // Jika tidak ada data yang sama, buat entri barang
         Supplier::create([
             'user_id' => $user_id,
             'namaToko' => $request->namaToko,
-            'namaSupplier' => $request->namaSupplier,
             'noKontak' => $request->noKontak,
             'alamat' => $request->alamat,
             // tambahkan kolom-kolom lainnya di sini

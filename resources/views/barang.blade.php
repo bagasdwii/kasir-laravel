@@ -189,7 +189,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus pengguna ini?
+                    Apakah Anda yakin ingin menghapus "{{ $barang->namaBarang }}" ini?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -210,7 +210,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus pengguna ini?
+                    Apakah Anda yakin ingin menghapus  "{{ $categori->namaCategori }}" ini?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

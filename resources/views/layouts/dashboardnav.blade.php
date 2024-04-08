@@ -129,7 +129,7 @@
     </div>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 
     <script src="/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -202,10 +202,11 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2();
+        
         });
+        
     </script>
-
-
+   
 
 
 

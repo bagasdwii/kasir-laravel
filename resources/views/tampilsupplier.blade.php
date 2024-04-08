@@ -39,11 +39,6 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="namaSupplier">Nama Supplier</label>
-                                    <input type="text" name="namaSupplier" class="form-control" id="namaSupplier"
-                                        placeholder="Nama Supplier" value="{{$data->namaSupplier}}" required>
-                                </div>
-                                <div class="form-group">
                                     <label for="noKontak">No Kontak</label>
                                     <input type="text" name="noKontak" class="form-control" id="noKOntak"
                                         placeholder="No Kontak" value="{{$data->noKontak}}" required>
