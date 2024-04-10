@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PembelianController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -9,7 +8,9 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\DetailPembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,4 +66,5 @@ Route::post('/tambahpembelian', [PembelianController::class, 'tambahpembelian'])
 Route::get('/tampilpembelian/{id}', [PembelianController::class, 'tampilpembelian'])->middleware('auth');
 Route::post('/updatepembelian/{id}', [PembelianController::class, 'updatepembelian']);
 Route::get('/deletepembelian/{id}', [PembelianController::class, 'deletepembelian'])->middleware('auth');
-Route::get('/detailpembelian/{id}', [PembelianController::class, 'detailpembelian'])->middleware('auth');
+Route::get('/detailpembelian/{id}', [DetailPembelianController::class, 'detailpembelian'])->middleware('auth');
+Route::get('/deletedetailpembelian/{id}', [DetailPembelianController::class, 'deletedetailpembelian'])->middleware('auth');

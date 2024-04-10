@@ -58,11 +58,11 @@
                                    
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="supplier_id">Nama Toko</label>
-                                            <select name="supplier_id" id="supplier_id" class="form-control select2" style="width: 100%;" required>
+                                            <label for="barang_id">Nama Toko</label>
+                                            <select name="barang_id" id="barang_id" class="form-control select2" style="width: 100%;" required>
                                                 <option selected="selected"></option>
-                                                @foreach ($dSupplier as $supplier)
-                                                    <option value="{{ $supplier->id }}">{{ $supplier->namaToko }}</option>
+                                                @foreach ($dBarang as $barang)
+                                                    <option value="{{ $barang->id }}">{{ $barang->namaToko }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

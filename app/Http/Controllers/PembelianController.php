@@ -83,13 +83,6 @@ class PembelianController extends Controller
         return redirect()->route('pembelian');
 
     }
-    public function detailpembelian($id){
-        $data = Pembelian::find($id);
-        $loggedInUser = Auth::user();
-        $loggedInOwner = Auth::user()->id; 
-
-        return view('/detailpembelian', compact('data', 'loggedInUser'));
-       
-    }
+   
    
 }
