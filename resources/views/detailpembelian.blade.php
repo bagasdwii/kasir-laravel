@@ -48,9 +48,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="/tambahpembelian">
+                <form method="post" action="/tambahdetailpembelian">
                     @csrf
                     <input type="hidden" name="user_id" id="user_id" value="{{ $loggedInUser->id }}">
+                    <input type="hidden" name="pembelian_id" id="pembelian_id" value="{{ $data1->id }}">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-6">
@@ -58,38 +59,40 @@
                                    
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="barang_id">Nama Toko</label>
+                                            <label for="barang_id">Nama Barang</label>
                                             <select name="barang_id" id="barang_id" class="form-control select2" style="width: 100%;" required>
                                                 <option selected="selected"></option>
                                                 @foreach ($dBarang as $barang)
-                                                    <option value="{{ $barang->id }}">{{ $barang->namaToko }}</option>
+                                                    <option value="{{ $barang->id }}">{{ $barang->namaBarang }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                   
                                         
                                         <div class="form-group">
-                                            <label>Kode Faktur</label>
-                                            <input type="text" name="noFaktur" id="noFaktur" class="form-control"
-                                                placeholder="Kode Faktur" required>
+                                            <label>Jumlah Barang</label>
+                                            <input type="number" name="jumlah" id="jumlah" class="form-control"
+                                                placeholder="Jumlah Barang" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="card card-info">
-                                    <div class="form-group">
-                                        <label>Tanggal</label>
-                                        <input type="date" name="tanggal" id="tanggal" class="form-control"
-                                            placeholder="Tanggal" required>
-                                    </div>
                                     <div class="card-body">
+
                                         <div class="form-group">
-                                            <label>Total Beli</label>
-                                            <input type="number" name="totalHarga" id="totalHarga" class="form-control"
-                                                placeholder="Total Beli" value="0" readonly>
+                                            <label for="harga">Harga Barang</label>
+                                            <input type="number" name="harga" id="harga" class="form-control" placeholder="Harga Barang" value="0" readonly>
                                         </div>
-                                    
+                                        
+                                            <div class="form-group" id="subtotal-group" style="display: none;">
+                                                <label for="subTotal">Subtotal</label>
+                                                <input type="number" name="subTotal" id="subTotal" class="form-control" placeholder="Subtotal" value="0" readonly>
+                                            </div>
+                                            
+                                        
+                                       
                                     </div>
                                 </div>
                             </div>

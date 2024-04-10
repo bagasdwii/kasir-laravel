@@ -66,5 +66,10 @@ Route::post('/tambahpembelian', [PembelianController::class, 'tambahpembelian'])
 Route::get('/tampilpembelian/{id}', [PembelianController::class, 'tampilpembelian'])->middleware('auth');
 Route::post('/updatepembelian/{id}', [PembelianController::class, 'updatepembelian']);
 Route::get('/deletepembelian/{id}', [PembelianController::class, 'deletepembelian'])->middleware('auth');
+
+
 Route::get('/detailpembelian/{id}', [DetailPembelianController::class, 'detailpembelian'])->middleware('auth');
 Route::get('/deletedetailpembelian/{id}', [DetailPembelianController::class, 'deletedetailpembelian'])->middleware('auth');
+Route::get('/get-harga/{id}', 'App\Http\Controllers\DetailPembelianController@getHarga');
+Route::post('/tambahdetailpembelian', [DetailPembelianController::class, 'tambahdetailpembelian']);
+

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('harga');
             $table->integer('subTotal');
             $table->timestamps();
-            $table->unique(array('user_id','barang_id'));
+            $table->unique(array('user_id','barang_id', 'pembelian_id'));
     
         });
     }

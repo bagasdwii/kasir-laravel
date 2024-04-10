@@ -206,7 +206,41 @@
         });
         
     </script>
-   
+    <script>
+        $(document).ready(function() {
+            $('#barang_id').change(function() {
+                var barangId = $(this).val();
+                $.ajax({
+                    url: '/get-harga/' + barangId, // Ganti dengan URL yang sesuai untuk mendapatkan harga beli
+                    type: 'GET',
+                    success: function(response) {
+                        $('#harga').val(response.hargaBeli);
+                        calculateSubtotal();
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+
+            $('#jumlah').on('input', function() {
+                calculateSubtotal();
+            });
+
+            function calculateSubtotal() {
+                var harga = parseFloat($('#harga').val());
+                var jumlah = parseInt($('#jumlah').val());
+                var subtotal = harga * jumlah;
+                $('#subTotal').val(subtotal);
+                if (subtotal > 0) {
+                    $('#subtotal-group').show();
+                } else {
+                    $('#subtotal-group').hide();
+                }
+            }
+        });
+    </script>
+
 
 
 
