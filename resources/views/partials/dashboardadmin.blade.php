@@ -34,7 +34,7 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ request()->is('pembelian', 'retur', 'penjualan', 'laporan') ? 'menu-is-opening menu-open' : '' }}">
             <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-shopping-cart"></i>
                 <p>
@@ -46,6 +46,12 @@
                     <a href="/pembelian" class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Pembelian</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/pembelian" class="nav-link {{ request()->is('retur') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Retur</p>
                     </a>
                 </li>
                 <li class="nav-item">

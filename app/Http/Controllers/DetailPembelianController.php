@@ -58,5 +58,10 @@ class DetailPembelianController extends Controller
         
             return redirect()->route('pembelian')->with('success', 'Data berhasil ditambahkan.');
         }
-        
+        public function deletedetailpembelian($id){
+            $data = DetailPembelian::find($id);
+            $data->delete();
+            return redirect()->route('pembelian');
+    
+        }
 }

@@ -27,6 +27,7 @@
                                     <th>No</th>
                                     <th>Nama Toko</th>
                                     <th>Kode Faktur</th>
+                                    <th>Tanggal</th>
                                     <th>Total Beli</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -40,10 +41,10 @@
                                     <th> {{ $no++ }}</th>
                                     <td>{{ $pembelian->supplier->namaToko }}</td>
                                     <td>{{ $pembelian->noFaktur }}</td>
+                                    <td>{{ $pembelian->tanggal }}</td>
                                     <td>{{ $pembelian->totalHarga }}</td>
                                     <td>
                                         <a href="/detailpembelian/{{ $pembelian->id }}" class="btn btn-warning"> Detail </a>
-                                        <a href="/tampilpembelian/{{ $pembelian->id }}" class="btn btn-info"> Edit </a>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$pembelian->id}}">
                                             Hapus
                                         </button>
@@ -59,6 +60,7 @@
                                     <th>No</th>
                                     <th>Nama Toko</th>
                                     <th>Kode Faktur</th>
+                                    <th>Tanggal</th>
                                     <th>Total Beli</th>
                                     <th>Aksi</th>
                                 </tr>

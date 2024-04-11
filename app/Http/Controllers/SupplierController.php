@@ -64,18 +64,7 @@ class SupplierController extends Controller
                     ->where('user_id', $user_id)
                
             ],
-            'alamat' => [
-                'required',
-                'string',
-                'max:255',
-                // Rule::unique('barangs')->where(function ($query) use ($user_id, $categori_id) {
-                //     return $query->where('user_id', $user_id)
-                //                  ->where('categori_id', $categori_id);
-                // }),
-                Rule::unique('suppliers')
-                    ->where('user_id', $user_id)
-               
-            ],
+
             // tambahkan aturan validasi lainnya di sini
         ]);
     

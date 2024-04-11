@@ -117,7 +117,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus "{{ $pembelian->noFaktu }}" ini?
+                    Apakah Anda yakin ingin menghapus "{{ $pembelian->noFaktur }}" ini?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

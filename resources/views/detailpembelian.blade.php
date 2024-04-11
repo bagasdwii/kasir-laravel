@@ -119,11 +119,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus "{{ $pembelian->noFaktur }}" ini?
+                    Apakah Anda yakin ingin menghapus "{{ $pembelian->barang->namaBarang }}" ini?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <a href="/deletepembelian/{{ $pembelian->id }}" class="btn btn-danger">Hapus</a>
+                    <a href="/deletedetailpembelian/{{ $pembelian->id }}" class="btn btn-danger">Hapus</a>
                 </div>
             </div>
         </div>
