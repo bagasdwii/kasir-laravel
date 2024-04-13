@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/pembelian" class="nav-link {{ request()->is('retur') ? 'active' : '' }}">
+                    <a href="/retur" class="nav-link {{ request()->is('retur') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Retur</p>
                     </a>

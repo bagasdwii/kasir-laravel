@@ -240,6 +240,38 @@
             }
         });
     </script>
+    <script>
+   
+        $('#pembelian_id, #barang_id').on('change', function() {
+            // Ambil nilai dari input noFaktur dan barang_id
+            var pembelian_id = $('#pembelian_id').val();
+            var barangId = $('#barang_id').val();
+
+            // Lakukan permintaan AJAX
+            $.ajax({
+                type: 'GET',
+                url: '/get-jumlah-by-detailpembelian',
+                data: {
+                    pembelian_id: pembelian_id,
+                    barang_id: barangId
+                },
+                success: function(response) {
+                    // Mengisi nilai input jumlah dengan nilai yang ditemukan dari detail pembelian
+                    $('#jumlah').val(response.jumlah);
+
+                    // Ambil nilai maksimum dari jumlah yang ditemukan
+                    var maxJumlah = parseInt(response.jumlah);
+
+                    // Batasi nilai yang dimasukkan oleh pengguna ke maksimum jumlah yang ditemukan
+                    $('#jumlah').attr('max', maxJumlah);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    </script>
+
 
 
 

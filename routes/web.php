@@ -4,12 +4,14 @@ use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReturController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\DetailReturController;
 use App\Http\Controllers\DetailPembelianController;
 
 /*
@@ -72,4 +74,17 @@ Route::get('/detailpembelian/{id}', [DetailPembelianController::class, 'detailpe
 Route::get('/deletedetailpembelian/{id}', [DetailPembelianController::class, 'deletedetailpembelian'])->middleware('auth');
 Route::get('/get-harga/{id}', 'App\Http\Controllers\DetailPembelianController@getHarga');
 Route::post('/tambahdetailpembelian', [DetailPembelianController::class, 'tambahdetailpembelian']);
+
+Route::get('/retur', [ReturController::class, 'retur'])->name('retur')->middleware('auth');
+Route::post('/tambahretur', [ReturController::class, 'tambahretur']);
+Route::get('/tampilretur/{id}', [ReturController::class, 'tampilretur'])->middleware('auth');
+Route::post('/updateretur/{id}', [ReturController::class, 'updateretur']);
+Route::get('/deleteretur/{id}', [ReturController::class, 'deleteretur'])->middleware('auth');
+
+Route::get('/detailretur/{id}', [DetailReturController::class, 'detailretur'])->middleware('auth');
+Route::get('/deletedetailretur/{id}', [DetailReturController::class, 'deletedetailretur'])->middleware('auth');
+Route::post('/tambahdetailretur', [DetailReturController::class, 'tambahdetailretur']);
+// Define route to get jumlah by barang
+
+Route::get('/get-jumlah-by-detailpembelian', 'App\Http\Controllers\ReturController@getJumlahByDetailPembelian');
 
