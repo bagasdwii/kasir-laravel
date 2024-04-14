@@ -240,8 +240,19 @@
             }
         });
     </script>
-    <script>
    
+    <script>
+        $('#kembali').on('input', function() {
+            var kembali = parseInt($(this).val());
+            var maxKembali = parseInt($(this).attr('max'));
+            
+            if (kembali > maxKembali) {
+                $(this).val(maxKembali);
+            }
+        });
+    </script>
+    <script>
+        
         $('#pembelian_id, #barang_id').on('change', function() {
             // Ambil nilai dari input noFaktur dan barang_id
             var pembelian_id = $('#pembelian_id').val();
@@ -257,13 +268,13 @@
                 },
                 success: function(response) {
                     // Mengisi nilai input jumlah dengan nilai yang ditemukan dari detail pembelian
-                    $('#jumlah').val(response.jumlah);
+                    $('#jumlah-detail-pembelian').val(response.jumlah);
 
                     // Ambil nilai maksimum dari jumlah yang ditemukan
                     var maxJumlah = parseInt(response.jumlah);
 
                     // Batasi nilai yang dimasukkan oleh pengguna ke maksimum jumlah yang ditemukan
-                    $('#jumlah').attr('max', maxJumlah);
+                    $('#jumlah-detail-pembelian').attr('max', maxJumlah);
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText);
@@ -271,6 +282,8 @@
             });
         });
     </script>
+
+
 
 
 

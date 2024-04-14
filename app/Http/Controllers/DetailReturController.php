@@ -15,7 +15,7 @@ class DetailReturController extends Controller
     {
         // Mengambil user yang sedang login
         $loggedInUser = Auth::user();
-
+        $retur = Retur::find($id);
         // Mencari pembelian berdasarkan ID dan user yang membuat pembelian
         $data1 = Retur::where('id', $id)
                         ->where('user_id', $loggedInUser->id)
@@ -27,11 +27,15 @@ class DetailReturController extends Controller
 
         // Mencari detail pembelian terkait dengan pembelian yang ditemukan
         $data = DetailRetur::where('retur_id', $id)->get();
-
+        $maxJumlah = $retur->jumlah - $retur->kembali;
         $dBarang = Barang::where('user_id', $loggedInUser->id)->get();
-        return view('detailretur', compact('data', 'data1', 'loggedInUser', 'dBarang'));
+        return view('detailretur', compact('data', 'data1', 'loggedInUser', 'dBarang','maxJumlah'));
     }
-   
+
+
+
+
+    
       
     public function tambahdetailretur(Request $request){
         $user_id = $request->user()->id;

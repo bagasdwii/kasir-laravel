@@ -77,10 +77,12 @@
 
                                         <div class="form-group">
                                             <label for="kembali"></label>
-                                            <input type="number" name="kembali" id="kembali" class="form-control" placeholder="Kembali" value="0" required>
+                                            {{-- <input type="number" name="kembali" id="kembali" class="form-control" placeholder="Kembali" value="0" required> --}}
+                                            <input type="number" name="kembali" id="kembali" class="form-control" placeholder="Kembali" value="{{ old('kembali') }}" max="{{ $maxJumlah }}" required>
+
                                         </div>
+                                     
                                         
-                                    
                                         
                                        
                                     </div>

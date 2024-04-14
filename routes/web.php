@@ -88,3 +88,6 @@ Route::post('/tambahdetailretur', [DetailReturController::class, 'tambahdetailre
 
 Route::get('/get-jumlah-by-detailpembelian', 'App\Http\Controllers\ReturController@getJumlahByDetailPembelian');
 
+
+
+

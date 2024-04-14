@@ -92,7 +92,7 @@
                                      
                                         <div class="form-group">
                                             <label>Jumlah</label>
-                                            <input type="number" name="jumlah" id="jumlah" class="form-control"
+                                            <input type="number" name="jumlah" id="jumlah-detail-pembelian" class="form-control"
                                                 placeholder="Jumlah" required>
                                         </div>
                                    
