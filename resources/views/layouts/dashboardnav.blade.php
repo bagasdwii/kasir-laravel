@@ -253,7 +253,7 @@
     </script>
     <script>
         
-        $('#pembelian_id, #barang_id').on('change', function() {
+        $('#pembelian_id, #barang_id').on(x'change', function() {
             // Ambil nilai dari input noFaktur dan barang_id
             var pembelian_id = $('#pembelian_id').val();
             var barangId = $('#barang_id').val();

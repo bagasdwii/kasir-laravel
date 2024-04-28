@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use App\Models\Pembelian;
 use Illuminate\Http\Request;
+use App\Models\DetailPembelian;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -77,11 +78,24 @@ class PembelianController extends Controller
         return redirect()->route('pembelian');
 
     }
-    public function deletepembelian($id){
-        $data = Pembelian::find($id);
-        $data->delete();
-        return redirect()->route('pembelian');
-
+    public function deletePembelian($id)
+    {
+        // Temukan pembelian yang akan dihapus
+        $pembelian = Pembelian::findOrFail($id);
+    
+        // Temukan semua detail pembelian terkait
+        $detailPembelian = DetailPembelian::where('pembelian_id', $id)->get();
+    
+        // Hapus semua detail pembelian terkait
+        foreach ($detailPembelian as $detail) {
+            $detail->delete();
+        }
+    
+        // Hapus pembelian
+        $pembelian->delete();
+    
+        // Redirect atau berikan respons sesuai kebutuhan aplikasi Anda
+        return redirect()->back()->with('success', 'Pembelian berhasil dihapus beserta detailnya.');
     }
    
    

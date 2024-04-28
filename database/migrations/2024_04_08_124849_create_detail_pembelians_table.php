@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_pembelians', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('pembelian_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pembelian_id');
             $table->foreignId('barang_id');
             $table->integer('jumlah');
             $table->integer('harga');
