@@ -25,7 +25,7 @@
 
                     <div class="card-body ">
                         
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example2" class="table table-bordered table-hover" style="overflow: auto; ">
                             <thead>
                                 <tr>
                                     <th>#</th>

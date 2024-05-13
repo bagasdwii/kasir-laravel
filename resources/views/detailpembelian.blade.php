@@ -71,7 +71,7 @@
                                         
                                         <div class="form-group">
                                             <label>Jumlah Barang</label>
-                                            <input type="number" name="jumlah" id="jumlah" class="form-control"
+                                            <input type="number" name="jumlah" id="jumlah" class="form-control" min="0"
                                                 placeholder="Jumlah Barang" required>
                                         </div>
                                     </div>

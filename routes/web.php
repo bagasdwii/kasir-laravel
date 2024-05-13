@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PenjualanController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -87,6 +88,12 @@ Route::post('/tambahdetailretur', [DetailReturController::class, 'tambahdetailre
 // Define route to get jumlah by barang
 
 Route::get('/get-jumlah-by-detailpembelian', 'App\Http\Controllers\ReturController@getJumlahByDetailPembelian');
+
+Route::get('/penjualan', [PenjualanController::class, 'penjualan'])->name('penjualan')->middleware('auth');
+Route::post('/tambahpenjualan', [PenjualanController::class, 'tambahpenjualan']);
+Route::get('/tampilbarang/{id}', [BarangController::class, 'tampilbarang'])->middleware('auth');
+Route::post('/updatebarang/{id}', [BarangController::class, 'updatebarang']);
+Route::get('/deletebarang/{id}', [BarangController::class, 'deletebarang'])->middleware('auth');
 
 
 

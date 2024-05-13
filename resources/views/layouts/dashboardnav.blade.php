@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>AdminLTE 3 | Dashboard 2</title>
 
     <link rel="stylesheet"
@@ -130,6 +132,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 
     <script src="/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -253,7 +256,7 @@
     </script>
     <script>
         
-        $('#pembelian_id, #barang_id').on(x'change', function() {
+        $('#pembelian_id, #barang_id').on('change', function() {
             // Ambil nilai dari input noFaktur dan barang_id
             var pembelian_id = $('#pembelian_id').val();
             var barangId = $('#barang_id').val();
@@ -281,11 +284,244 @@
                 }
             });
         });
+    
     </script>
+   
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#example2penjualan').DataTable({
+            "paging": false
+            
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#example2penjualan2').DataTable({
+            "paging": false;
+            "search": false;
+        });
+    });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Array untuk menyimpan informasi barang yang ada di "Data Belanja Barang"
+            var shoppingItems = [];
+            // Array untuk menyimpan informasi pembayaran
+            var paymentData = {
+                bayar: 0,
+                total: 0,
+                kembalian: 0
+            };
 
+            // Event listener untuk input stok di "Data Barang"
+            var stockInputs = document.querySelectorAll('.stock');
 
+            stockInputs.forEach(function(stockInput) {
+                stockInput.addEventListener('input', function() {
+                    var value = parseInt(this.value);
+                    var row = this.closest('tr');
+                    var kode = row.querySelector('td:nth-child(1)').innerText;
+                    var nama = row.querySelector('td:nth-child(2)').innerText;
+                    var harga = row.querySelector('td:nth-child(3)').innerText;
 
+                    // Periksa apakah nama barang sudah ada di "Data Belanja Barang"
+                    var foundItem = shoppingItems.find(item => item.nama === nama);
+                    if (foundItem) {
+                        // Jika value stok baru lebih besar dari 0, update stok pada "Data Belanja Barang"
+                        if (value > 0) {
+                            foundItem.stok = value;
+                            foundItem.subtotal = value * foundItem.harga;
+                        } else {
+                            // Jika value stok baru adalah 0, hapus item dari "Data Belanja Barang"
+                            var index = shoppingItems.indexOf(foundItem);
+                            shoppingItems.splice(index, 1);
+                        }
+                    } else {
+                        // Jika nama barang belum ada, tambahkan baris baru ke "Data Belanja Barang"
+                        var subtotal = value * parseFloat(harga);
+                        shoppingItems.push({kode: kode,  nama: nama, harga: parseFloat(harga), stok: value, subtotal: subtotal });
+                    }
+                    // Perbarui tampilan pada "Data Belanja Barang"
+                    updateShoppingTable();
+                });
+            });
 
+            // Fungsi untuk memperbarui tampilan pada "Data Belanja Barang"
+            function updateShoppingTable() {
+                var shoppingTableBody = document.querySelector('#example2penjualan2 tbody');
+                shoppingTableBody.innerHTML = '';
+                var totalBelanja = 0; // Variable untuk menyimpan total belanja
+
+                shoppingItems.forEach(function(item) {
+                    var newRow = document.createElement('tr');
+                    totalBelanja += item.subtotal; // Tambahkan subtotal ke total belanja
+                    newRow.innerHTML = '<td>' + item.nama + '</td><td>' + item.harga + '</td><td>' + item.stok + '</td><td>' + item.subtotal + '</td>';
+                    shoppingTableBody.appendChild(newRow);
+                });
+
+                // Tambahkan baris untuk menampilkan total belanja di bagian footer
+                var footerRow = document.querySelector('#example2penjualan2 tfoot');
+                if (shoppingItems.length > 0) {
+                    footerRow.innerHTML = '<th colspan="3">Total Belanja</th><td>' + totalBelanja + '</td>';
+                    // Tampilkan tombol "Bayar"
+                    document.getElementById('bayar').style.display = 'block';
+                } else {
+                    // Sembunyikan total belanja dan tombol "Bayar" jika tidak ada barang dalam "Data Belanja Barang"
+                    footerRow.innerHTML = '';
+                    document.getElementById('bayar').style.display = 'none';
+                }
+
+                // Update total belanja di dalam data pembayaran
+                paymentData.total = totalBelanja;
+            }
+
+            // Event listener untuk tombol bayar
+            document.getElementById('bayar').addEventListener('click', function() {
+                // Menampilkan modal bayar
+                $('#bayarModal').modal('show');
+            });
+
+            // Event listener untuk input uang
+            document.getElementById('uang').addEventListener('input', function() {
+                // Mengambil nilai pembayaran dari input
+                paymentData.bayar = parseFloat(this.value);
+
+                // Menghitung kembalian
+                paymentData.kembalian = paymentData.bayar - paymentData.total;
+
+                // Menampilkan kembalian pada input kembalian
+                document.getElementById('kembali').value = paymentData.kembalian;
+
+                // Menyembunyikan tombol bayar jika kembalian kurang dari atau sama dengan 0
+                if (paymentData.kembalian <= 0 || isNaN(paymentData.kembalian)) {
+                    document.getElementById('bayarBtn').style.display = 'none';
+                } else {
+                    document.getElementById('bayarBtn').style.display = 'block';
+                }
+            });
+
+            // Event listener untuk tombol bayar pada modal
+            // document.getElementById('bayarBtn').addEventListener('click', function() {
+            document.getElementById('tambahpenjualan').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Menyembunyikan tombol bayar
+                $('#bayarBtn').hide();
+
+                // Mengambil data dari form
+                var formData = {
+                    shoppingItems: shoppingItems,
+                    paymentData: paymentData
+                };
+            
+                
+
+                // Mengirim permintaan AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/tambahpenjualan',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
+                    success: function(response) {
+                        console.log(response); // Log respons untuk di-debug
+
+                        // Menutup modal bayar
+                        $('#bayarModal').modal('hide');
+
+                        // Reset nilai pembayaran
+                        $('#uang').val('');
+
+                        // Reset data belanja
+                        shoppingItems = [];
+                        updateShoppingTable();
+
+                        // Reset data pembayaran
+                        paymentData.bayar = 0;
+                        paymentData.total = 0;
+                        paymentData.kembalian = 0;
+                        if(response['success']) {
+                            document.location.href = "{{ route('penjualan') }}";
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText); // Tangkap dan log kesalahan jika terjadi
+                        alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
+                    }
+                });
+                return false;
+            });
+
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fungsi untuk menampilkan modal bayar dengan total harga
+            function showBayarModal(totalHarga) {
+                // Mengambil elemen input total harga di dalam modal bayar
+                var totalHargaInput = document.getElementById('totalHarga');
+
+                // Mengisi nilai total harga pada input di dalam modal
+                totalHargaInput.value = totalHarga;
+
+                // Menampilkan modal bayar
+                $('#bayarModal').modal('show');
+            }
+
+            // Event listener untuk tombol bayar
+            document.getElementById('bayar').addEventListener('click', function() {
+                // Mengambil total harga dari "Data Belanja Barang"
+                var totalHarga = calculateTotalHarga();
+
+                // Menampilkan modal bayar dengan total harga
+                showBayarModal(totalHarga);
+            });
+
+            // Event listener untuk input uang
+            document.getElementById('uang').addEventListener('input', function() {
+                // Mengambil nilai uang dari input
+                var uang = parseFloat(this.value);
+                // Mengambil total harga dari "Data Belanja Barang"
+                var totalHarga = parseFloat(document.getElementById('totalHarga').value);
+
+                // Menghitung kembalian
+                var kembalian = uang - totalHarga;
+
+                // Menampilkan kembalian pada input kembalian
+                document.getElementById('kembali').value = kembalian;
+
+                // Menyembunyikan tombol bayar jika kembalian kurang dari atau sama dengan 0
+                if (kembalian <= 0 || isNaN(kembalian)) {
+                    document.getElementById('bayarBtn').style.display = 'none';
+                } else {
+                    document.getElementById('bayarBtn').style.display = 'block';
+                }
+            });
+
+            // Fungsi untuk menghitung total harga dari "Data Belanja Barang"
+            function calculateTotalHarga() {
+                var shoppingItems = []; // Daftar barang dari "Data Belanja Barang"
+                // Mendapatkan daftar barang dari "Data Belanja Barang"
+                var rows = document.querySelectorAll('#example2penjualan2 tbody tr');
+                // Loop melalui setiap baris dan menambahkan informasi barang ke dalam daftar
+                rows.forEach(function(row) {
+                    var nama = row.querySelector('td:nth-child(1)').innerText;
+                    var harga = parseFloat(row.querySelector('td:nth-child(2)').innerText);
+                    var stok = parseInt(row.querySelector('td:nth-child(3)').innerText);
+                    shoppingItems.push({ nama: nama, harga: harga, stok: stok });
+                });
+
+                // Menghitung total harga
+                var totalHarga = shoppingItems.reduce(function(total, item) {
+                    return total + (item.harga * item.stok);
+                }, 0);
+
+                return totalHarga;
+            }
+        });
+    </script>
 
 
 
