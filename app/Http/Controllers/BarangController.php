@@ -12,31 +12,45 @@ use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
 {
+    // public function barang()
+    // {
+    //     // Periksa peran pengguna yang login
+    //     $loggedInUser = Auth::user();
+        
+     
+    //         // Jika yang login adalah admin, filter barang berdasarkan user_id
+    //     $data = Barang::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
+    //     if ($loggedInUser->role === 'staff') {
+    //         // Jika yang login adalah staff
+    //         $adminUser = User::where('role', 'admin')->where('email', $loggedInUser->owner)->first(); // Cari user admin yang memiliki email yang sama dengan owner staff
+    //         if ($adminUser) {
+    //             // Jika admin ditemukan
+    //             $data = Barang::where('user_id', $adminUser->id)->orderBy('created_at', 'desc')->get(); // Filter barang berdasarkan user_id admin
+    //         }
+    //         // Jika tidak ada admin yang cocok, maka $data tidak akan diatur
+    //     }
+
+    //     $dCategori = Categori::where('user_id', $loggedInUser->id)->get();
+
+    //     return view('barang', compact('data', 'loggedInUser', 'dCategori'));
+    // }
+
+
+    // }
     public function barang()
     {
         // Periksa peran pengguna yang login
         $loggedInUser = Auth::user();
-        
-     
-            // Jika yang login adalah admin, filter barang berdasarkan user_id
-        $data = Barang::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
-        if ($loggedInUser->role === 'staff') {
-            // Jika yang login adalah staff
-            $adminUser = User::where('role', 'admin')->where('email', $loggedInUser->owner)->first(); // Cari user admin yang memiliki email yang sama dengan owner staff
-            if ($adminUser) {
-                // Jika admin ditemukan
-                $data = Barang::where('user_id', $adminUser->id)->orderBy('created_at', 'desc')->get(); // Filter barang berdasarkan user_id admin
-            }
-            // Jika tidak ada admin yang cocok, maka $data tidak akan diatur
-        }
 
-        $dCategori = Categori::where('user_id', $loggedInUser->id)->get();
+        // Ambil semua data Barang tanpa filter user_id
+        $data = Barang::orderBy('created_at', 'desc')->get();
+        
+        // Ambil semua data Categori tanpa filter user_id
+        $dCategori = Categori::all();
 
         return view('barang', compact('data', 'loggedInUser', 'dCategori'));
     }
 
-
-    // }
     public function tambahbarang(Request $request){
         $user_id = $request->user()->id;
         $categori_id = $request->input('categori_id');

@@ -8,6 +8,16 @@
                             <div class="col">
                                 <h3 class="card-title">Data Belanja Barang</h3>
                             </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg">
+                                    Tambah Data
+                                </button>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg-category">
+                                    Tambah Kategori
+                                </button>
+                            </div>
                         </div>
                     </div>
 

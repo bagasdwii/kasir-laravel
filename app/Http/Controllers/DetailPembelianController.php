@@ -38,25 +38,36 @@ class DetailPembelianController extends Controller
             return response()->json(['hargaBeli' => $barang->hargaBeli]);
         }
           
-        public function tambahdetailpembelian(Request $request){
+        public function tambahdetailpembelian(Request $request)
+        {
             $user_id = $request->user()->id;
             $pembelian_id = $request->input('pembelian_id');
+            $barang_id = $request->input('barang_id');
+        
             // Validasi untuk memastikan tidak ada duplikasi data
-      
-
+            $existingDetail = DetailPembelian::where('pembelian_id', $pembelian_id)
+                ->where('barang_id', $barang_id)
+                ->first();
+        
+            if ($existingDetail) {
+                // Jika data dengan barang_id yang sama sudah ada, kembalikan pesan error
+                return redirect()->route('pembelian')->with('error', 'Barang sudah ada pada detail pembelian.');
+            }
         
             // Jika tidak ada data yang sama, buat entri barang
             DetailPembelian::create([
                 'user_id' => $user_id,
                 'pembelian_id' => $pembelian_id,
-                'barang_id' => $request->barang_id,
-                'jumlah' => $request->jumlah,
-                'harga' => $request->harga,
-                'subTotal' => $request->subTotal,
+                'barang_id' => $barang_id,
+                'jumlah' => $request->input('jumlah'),
+                'harga' => $request->input('harga'),
+                'subTotal' => $request->input('subTotal'),
                 // tambahkan kolom-kolom lainnya di sini
             ]);
         
             return redirect()->route('pembelian')->with('success', 'Data berhasil ditambahkan.');
+        
+        
         }
         public function deletedetailpembelian($id){
             $data = DetailPembelian::find($id);

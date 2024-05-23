@@ -25,15 +25,16 @@
     <link rel="stylesheet" href="/AdminLTE-3.2.0/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/AdminLTE-3.2.0/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
-    <script
-        nonce="8b268c9f-2294-43d0-bbed-20ac877253fb">try { (function (w, d) { !function (lD, lE, lF, lG) { lD[lF] = lD[lF] || {}; lD[lF].executed = []; lD.zaraz = { deferred: [], listeners: [] }; lD.zaraz.q = []; lD.zaraz._f = function (lH) { return async function () { var lI = Array.prototype.slice.call(arguments); lD.zaraz.q.push({ m: lH, a: lI }) } }; for (const lJ of ["track", "set", "debug"]) lD.zaraz[lJ] = lD.zaraz._f(lJ); lD.zaraz.init = () => { var lK = lE.getElementsByTagName(lG)[0], lL = lE.createElement(lG), lM = lE.getElementsByTagName("title")[0]; lM && (lD[lF].t = lE.getElementsByTagName("title")[0].text); lD[lF].x = Math.random(); lD[lF].w = lD.screen.width; lD[lF].h = lD.screen.height; lD[lF].j = lD.innerHeight; lD[lF].e = lD.innerWidth; lD[lF].l = lD.location.href; lD[lF].r = lE.referrer; lD[lF].k = lD.screen.colorDepth; lD[lF].n = lE.characterSet; lD[lF].o = (new Date).getTimezoneOffset(); if (lD.dataLayer) for (const lQ of Object.entries(Object.entries(dataLayer).reduce(((lR, lS) => ({ ...lR[1], ...lS[1] })), {}))) zaraz.set(lQ[0], lQ[1], { scope: "page" }); lD[lF].q = []; for (; lD.zaraz.q.length;) { const lT = lD.zaraz.q.shift(); lD[lF].q.push(lT) } lL.defer = !0; for (const lU of [localStorage, sessionStorage]) Object.keys(lU || {}).filter((lW => lW.startsWith("_zaraz_"))).forEach((lV => { try { lD[lF]["z_" + lV.slice(7)] = JSON.parse(lU.getItem(lV)) } catch { lD[lF]["z_" + lV.slice(7)] = lU.getItem(lV) } })); lL.referrerPolicy = "origin"; lL.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(lD[lF]))); lK.parentNode.insertBefore(lL, lK) };["complete", "interactive"].includes(lE.readyState) ? zaraz.init() : lD.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document) } catch (e) { throw fetch("/cdn-cgi/zaraz/t"), e; };
+    <script nonce="8b268c9f-2294-43d0-bbed-20ac877253fb">try { (function (w, d) { !function (lD, lE, lF, lG) { lD[lF] = lD[lF] || {}; lD[lF].executed = []; lD.zaraz = { deferred: [], listeners: [] }; lD.zaraz.q = []; lD.zaraz._f = function (lH) { return async function () { var lI = Array.prototype.slice.call(arguments); lD.zaraz.q.push({ m: lH, a: lI }) } }; for (const lJ of ["track", "set", "debug"]) lD.zaraz[lJ] = lD.zaraz._f(lJ); lD.zaraz.init = () => { var lK = lE.getElementsByTagName(lG)[0], lL = lE.createElement(lG), lM = lE.getElementsByTagName("title")[0]; lM && (lD[lF].t = lE.getElementsByTagName("title")[0].text); lD[lF].x = Math.random(); lD[lF].w = lD.screen.width; lD[lF].h = lD.screen.height; lD[lF].j = lD.innerHeight; lD[lF].e = lD.innerWidth; lD[lF].l = lD.location.href; lD[lF].r = lE.referrer; lD[lF].k = lD.screen.colorDepth; lD[lF].n = lE.characterSet; lD[lF].o = (new Date).getTimezoneOffset(); if (lD.dataLayer) for (const lQ of Object.entries(Object.entries(dataLayer).reduce(((lR, lS) => ({ ...lR[1], ...lS[1] })), {}))) zaraz.set(lQ[0], lQ[1], { scope: "page" }); lD[lF].q = []; for (; lD.zaraz.q.length;) { const lT = lD.zaraz.q.shift(); lD[lF].q.push(lT) } lL.defer = !0; for (const lU of [localStorage, sessionStorage]) Object.keys(lU || {}).filter((lW => lW.startsWith("_zaraz_"))).forEach((lV => { try { lD[lF]["z_" + lV.slice(7)] = JSON.parse(lU.getItem(lV)) } catch { lD[lF]["z_" + lV.slice(7)] = lU.getItem(lV) } })); lL.referrerPolicy = "origin"; lL.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(lD[lF]))); lK.parentNode.insertBefore(lL, lK) };["complete", "interactive"].includes(lE.readyState) ? zaraz.init() : lD.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document) } catch (e) { throw fetch("/cdn-cgi/zaraz/t"), e; };
     </script>
 
     <style>
         input:-webkit-autofill {
-            -webkit-text-fill-color: #000 !important; /* Warna teks hitam */
+            -webkit-text-fill-color: #000 !important;
+            /* Warna teks hitam */
         }
-        .select2 > .selection > .select2-selection {
+
+        .select2>.selection>.select2-selection {
             padding: 0px;
         }
     </style>
@@ -99,13 +100,13 @@
                 </div>
 
                 @if(auth()->check() && auth()->user()->role === 'admin')
-                    @include('partials.dashboardadmin')
+                @include('partials.dashboardadmin')
                 @elseif(auth()->check() && auth()->user()->role === 'staff')
-                    @include('partials.dashboardstaff')
+                @include('partials.dashboardstaff')
                 @endif
 
 
-                
+
 
 
             </div>
@@ -150,7 +151,7 @@
     <script src="/AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
 
     <script src="/AdminLTE-3.2.0/dist/js/demo.js"></script>
-   
+
     <script src="/AdminLTE-3.2.0/dist/js/pages/dashboard2.js"></script>
 
     {{-- ----------------------Tabel ---------------------- --}}
@@ -180,12 +181,12 @@
 
     <script>
         $(function () {
-                        //Initialize Select2 Elements
+            //Initialize Select2 Elements
             $('.select2').select2()
 
             //Initialize Select2 Elements
             $('.select2bs4').select2({
-            theme: 'bootstrap4'
+                theme: 'bootstrap4'
             })
             $("#example1").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -203,30 +204,30 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.select2').select2();
-        
+
         });
-        
+
     </script>
     <script>
-        $(document).ready(function() {
-            $('#barang_id').change(function() {
+        $(document).ready(function () {
+            $('#barang_id').change(function () {
                 var barangId = $(this).val();
                 $.ajax({
                     url: '/get-harga/' + barangId, // Ganti dengan URL yang sesuai untuk mendapatkan harga beli
                     type: 'GET',
-                    success: function(response) {
+                    success: function (response) {
                         $('#harga').val(response.hargaBeli);
                         calculateSubtotal();
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         console.log(xhr.responseText);
                     }
                 });
             });
 
-            $('#jumlah').on('input', function() {
+            $('#jumlah').on('input', function () {
                 calculateSubtotal();
             });
 
@@ -243,20 +244,20 @@
             }
         });
     </script>
-   
+
     <script>
-        $('#kembali').on('input', function() {
+        $('#kembali').on('input', function () {
             var kembali = parseInt($(this).val());
             var maxKembali = parseInt($(this).attr('max'));
-            
+
             if (kembali > maxKembali) {
                 $(this).val(maxKembali);
             }
         });
     </script>
     <script>
-        
-        $('#pembelian_id, #barang_id').on('change', function() {
+
+        $('#pembelian_id, #barang_id').on('change', function () {
             // Ambil nilai dari input noFaktur dan barang_id
             var pembelian_id = $('#pembelian_id').val();
             var barangId = $('#barang_id').val();
@@ -269,7 +270,7 @@
                     pembelian_id: pembelian_id,
                     barang_id: barangId
                 },
-                success: function(response) {
+                success: function (response) {
                     // Mengisi nilai input jumlah dengan nilai yang ditemukan dari detail pembelian
                     $('#jumlah-detail-pembelian').val(response.jumlah);
 
@@ -279,33 +280,36 @@
                     // Batasi nilai yang dimasukkan oleh pengguna ke maksimum jumlah yang ditemukan
                     $('#jumlah-detail-pembelian').attr('max', maxJumlah);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error(xhr.responseText);
                 }
             });
         });
-    
+
     </script>
-   
+
     </script>
     <script>
-        $(document).ready(function() {
-        $('#example2penjualan').DataTable({
-            "paging": false
-            
+        $(document).ready(function () {
+            $('#example2penjualan').DataTable({
+                "paging": false;
+                "search": false;
+
+
+            });
         });
-    });
     </script>
     <script>
-        $(document).ready(function() {
-        $('#example2penjualan2').DataTable({
-            "paging": false;
-            "search": false;
+        $(document).ready(function () {
+            $('#example2penjualan2').DataTable({
+                "paging": false;
+                "search": false;
+            });
         });
-    });
     </script>
+    {{--
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Array untuk menyimpan informasi barang yang ada di "Data Belanja Barang"
             var shoppingItems = [];
             // Array untuk menyimpan informasi pembayaran
@@ -318,8 +322,8 @@
             // Event listener untuk input stok di "Data Barang"
             var stockInputs = document.querySelectorAll('.stock');
 
-            stockInputs.forEach(function(stockInput) {
-                stockInput.addEventListener('input', function() {
+            stockInputs.forEach(function (stockInput) {
+                stockInput.addEventListener('input', function () {
                     var value = parseInt(this.value);
                     var row = this.closest('tr');
                     var kode = row.querySelector('td:nth-child(1)').innerText;
@@ -341,7 +345,7 @@
                     } else {
                         // Jika nama barang belum ada, tambahkan baris baru ke "Data Belanja Barang"
                         var subtotal = value * parseFloat(harga);
-                        shoppingItems.push({kode: kode,  nama: nama, harga: parseFloat(harga), stok: value, subtotal: subtotal });
+                        shoppingItems.push({ kode: kode, nama: nama, harga: parseFloat(harga), stok: value, subtotal: subtotal });
                     }
                     // Perbarui tampilan pada "Data Belanja Barang"
                     updateShoppingTable();
@@ -354,7 +358,7 @@
                 shoppingTableBody.innerHTML = '';
                 var totalBelanja = 0; // Variable untuk menyimpan total belanja
 
-                shoppingItems.forEach(function(item) {
+                shoppingItems.forEach(function (item) {
                     var newRow = document.createElement('tr');
                     totalBelanja += item.subtotal; // Tambahkan subtotal ke total belanja
                     newRow.innerHTML = '<td>' + item.nama + '</td><td>' + item.harga + '</td><td>' + item.stok + '</td><td>' + item.subtotal + '</td>';
@@ -378,13 +382,13 @@
             }
 
             // Event listener untuk tombol bayar
-            document.getElementById('bayar').addEventListener('click', function() {
+            document.getElementById('bayar').addEventListener('click', function () {
                 // Menampilkan modal bayar
                 $('#bayarModal').modal('show');
             });
 
             // Event listener untuk input uang
-            document.getElementById('uang').addEventListener('input', function() {
+            document.getElementById('uang').addEventListener('input', function () {
                 // Mengambil nilai pembayaran dari input
                 paymentData.bayar = parseFloat(this.value);
 
@@ -395,16 +399,24 @@
                 document.getElementById('kembali').value = paymentData.kembalian;
 
                 // Menyembunyikan tombol bayar jika kembalian kurang dari atau sama dengan 0
-                if (paymentData.kembalian <= 0 || isNaN(paymentData.kembalian)) {
+                if (paymentData.kembalian < 0 || isNaN(paymentData.kembalian)) {
                     document.getElementById('bayarBtn').style.display = 'none';
+                    document.getElementById('cetakBtn').style.display = 'none';
+
                 } else {
                     document.getElementById('bayarBtn').style.display = 'block';
+                    document.getElementById('cetakBtn').style.display = 'block';
+
                 }
+
+                // Menyembunyikan tombol cetak jika kembalian kurang dari atau sama dengan 0
+
             });
+
 
             // Event listener untuk tombol bayar pada modal
             // document.getElementById('bayarBtn').addEventListener('click', function() {
-            document.getElementById('tambahpenjualan').addEventListener('submit', function(e) {
+            document.getElementById('tambahpenjualan').addEventListener('submit', function (e) {
                 e.preventDefault();
                 // Menyembunyikan tombol bayar
                 $('#bayarBtn').hide();
@@ -414,8 +426,8 @@
                     shoppingItems: shoppingItems,
                     paymentData: paymentData
                 };
-            
-                
+
+
 
                 // Mengirim permintaan AJAX
                 $.ajax({
@@ -424,8 +436,9 @@
                     data: JSON.stringify(formData),
                     contentType: 'application/json',
                     headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
-                    success: function(response) {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                    },
+                    success: function (response) {
                         console.log(response); // Log respons untuk di-debug
 
                         // Menutup modal bayar
@@ -442,11 +455,11 @@
                         paymentData.bayar = 0;
                         paymentData.total = 0;
                         paymentData.kembalian = 0;
-                        if(response['success']) {
+                        if (response['success']) {
                             document.location.href = "{{ route('penjualan') }}";
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error(xhr.responseText); // Tangkap dan log kesalahan jika terjadi
                         alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
                     }
@@ -455,6 +468,1022 @@
             });
 
         });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Array untuk menyimpan informasi barang yang ada di "Data Belanja Barang"
+            var shoppingItems = [];
+            // Objek untuk menyimpan informasi pembayaran
+            var paymentData = {
+                bayar: 0,
+                total: 0,
+                kembalian: 0
+            };
+
+            // Event listener untuk input stok di "Data Barang"
+            var stockInputs = document.querySelectorAll('.stock');
+
+            stockInputs.forEach(function (stockInput) {
+                stockInput.addEventListener('input', function () {
+                    var value = parseInt(this.value);
+                    var row = this.closest('tr');
+                    var kode = row.querySelector('td:nth-child(1)').innerText;
+                    var nama = row.querySelector('td:nth-child(2)').innerText;
+                    var harga = parseFloat(row.querySelector('td:nth-child(3)').innerText);
+
+                    // Periksa apakah nama barang sudah ada di "Data Belanja Barang"
+                    var foundItem = shoppingItems.find(item => item.nama === nama);
+                    if (foundItem) {
+                        // Jika value stok baru lebih besar dari 0, update stok pada "Data Belanja Barang"
+                        if (value > 0) {
+                            foundItem.stok = value;
+                            foundItem.subtotal = value * foundItem.harga;
+                        } else {
+                            // Jika value stok baru adalah 0, hapus item dari "Data Belanja Barang"
+                            var index = shoppingItems.indexOf(foundItem);
+                            shoppingItems.splice(index, 1);
+                        }
+                    } else {
+                        // Jika nama barang belum ada, tambahkan baris baru ke "Data Belanja Barang"
+                        var subtotal = value * harga;
+                        shoppingItems.push({ kode: kode, nama: nama, harga: harga, stok: value, subtotal: subtotal });
+                    }
+                    // Perbarui tampilan pada "Data Belanja Barang"
+                    updateShoppingTable();
+                });
+            });
+
+            // Fungsi untuk memperbarui tampilan pada "Data Belanja Barang"
+            function updateShoppingTable() {
+                var shoppingTableBody = document.querySelector('#example2penjualan2 tbody');
+                shoppingTableBody.innerHTML = '';
+                var totalBelanja = 0; // Variable untuk menyimpan total belanja
+
+                shoppingItems.forEach(function (item) {
+                    var newRow = document.createElement('tr');
+                    totalBelanja += item.subtotal; // Tambahkan subtotal ke total belanja
+                    newRow.innerHTML = '<td>' + item.nama + '</td><td>' + item.harga + '</td><td>' + item.stok + '</td><td>' + item.subtotal + '</td>';
+                    shoppingTableBody.appendChild(newRow);
+                });
+
+                // Tambahkan baris untuk menampilkan total belanja di bagian footer
+                var footerRow = document.querySelector('#example2penjualan2 tfoot');
+                if (shoppingItems.length > 0) {
+                    footerRow.innerHTML = '<th colspan="3">Total Belanja</th><td>' + totalBelanja + '</td>';
+                    // Tampilkan tombol "Bayar" dan "Cetak"
+                    document.getElementById('bayar').style.display = 'block';
+                } else {
+                    // Sembunyikan total belanja dan tombol "Bayar" jika tidak ada barang dalam "Data Belanja Barang"
+                    footerRow.innerHTML = '';
+                    document.getElementById('bayar').style.display = 'none';
+                }
+
+                // Update total belanja di dalam data pembayaran
+                paymentData.total = totalBelanja;
+            }
+
+            // Event listener untuk tombol bayar
+            document.getElementById('bayar').addEventListener('click', function () {
+                // Menampilkan modal bayar
+                $('#bayarModal').modal('show');
+            });
+
+            // Event listener untuk input uang
+            document.getElementById('uang').addEventListener('input', function () {
+                // Mengambil nilai pembayaran dari input
+                paymentData.bayar = parseFloat(this.value);
+
+                // Menghitung kembalian
+                paymentData.kembalian = paymentData.bayar - paymentData.total;
+
+                // Menampilkan kembalian pada input kembalian
+                document.getElementById('kembali').value = paymentData.kembalian;
+
+                // Menyembunyikan tombol bayar dan cetak jika kembalian kurang dari 0 atau NaN
+                if (paymentData.kembalian < 0 || isNaN(paymentData.kembalian)) {
+                    document.getElementById('bayarBtn').style.display = 'none';
+                    document.getElementById('cetakBtn').style.display = 'none';
+                } else {
+                    document.getElementById('bayarBtn').style.display = 'block';
+                    document.getElementById('cetakBtn').style.display = 'block';
+                }
+            });
+
+            // Event listener untuk submit form penjualan
+            document.getElementById('tambahpenjualan').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Mengambil data dari form
+                var formData = {
+                    shoppingItems: shoppingItems,
+                    paymentData: paymentData
+                };
+
+                // Mengirim permintaan AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/tambahpenjualan',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                    },
+                    success: function (response) {
+                        console.log(response); // Log respons untuk di-debug
+
+                        // Menutup modal bayar
+                        $('#bayarModal').modal('hide');
+
+                        // Reset nilai pembayaran
+                        $('#uang').val('');
+
+                        // Reset data belanja
+                        shoppingItems = [];
+                        updateShoppingTable();
+
+                        // Reset data pembayaran
+                        paymentData.bayar = 0;
+                        paymentData.total = 0;
+                        paymentData.kembalian = 0;
+
+                        if (response.success) {
+                            document.location.href = "{{ route('penjualan') }}";
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText); // Tangkap dan log kesalahan jika terjadi
+                        alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
+                    }
+                });
+            });
+
+            // Event listener untuk tombol cetak
+            document.getElementById('cetakBtn').addEventListener('click', function () {
+                cetakNota(shoppingItems, paymentData);
+            });
+
+            // Fungsi untuk mencetak nota
+            function cetakNota(shoppingItems, paymentData) {
+                var notaWindow = window.open('', 'PRINT', 'height=400,width=600');
+
+                notaWindow.document.write('<html><head><title>Nota Belanja</title>');
+                notaWindow.document.write('</head><body>');
+                notaWindow.document.write('<h1>Nota Belanja</h1>');
+                notaWindow.document.write('<table border="1"><tr><th>Nama Barang</th><th>Harga</th><th>Stok</th><th>Subtotal</th></tr>');
+
+                shoppingItems.forEach(function (item) {
+                    notaWindow.document.write('<tr><td>' + item.nama + '</td><td>' + item.harga + '</td><td>' + item.stok + '</td><td>' + item.subtotal + '</td></tr>');
+                });
+
+                notaWindow.document.write('</table>');
+                notaWindow.document.write('<p>Total Belanja: ' + paymentData.total + '</p>');
+                notaWindow.document.write('<p>Bayar: ' + paymentData.bayar + '</p>');
+                notaWindow.document.write('<p>Kembalian: ' + paymentData.kembalian + '</p>');
+                notaWindow.document.write('</body></html>');
+
+                notaWindow.document.close();
+                notaWindow.focus();
+                notaWindow.print();
+                notaWindow.close();
+            }
+        });
+
+    </script> --}}
+    {{--
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Array untuk menyimpan informasi barang yang ada di "Data Belanja Barang"
+            var shoppingItems = [];
+            // Objek untuk menyimpan informasi pembayaran
+            var paymentData = {
+                bayar: 0,
+                total: 0,
+                kembalian: 0
+            };
+
+            // Event listener untuk input stok di "Data Barang"
+            var stockInputs = document.querySelectorAll('.stock');
+
+            stockInputs.forEach(function (stockInput) {
+                stockInput.addEventListener('input', function () {
+                    var value = parseInt(this.value);
+                    var row = this.closest('tr');
+                    var kode = row.querySelector('td:nth-child(1)').innerText;
+                    var nama = row.querySelector('td:nth-child(2)').innerText;
+                    var harga = parseFloat(row.querySelector('td:nth-child(3)').innerText);
+                    var stok = parseInt(row.querySelector('td:nth-child(4)').innerText);
+
+                    // Periksa apakah nama barang sudah ada di "Data Belanja Barang"
+                    var foundItem = shoppingItems.find(item => item.nama === nama);
+                    if (foundItem) {
+                        // Jika value stok baru lebih besar dari 0 dan tidak melebihi stok tersedia, update stok pada "Data Belanja Barang"
+                        if (value > 0 && value <= stok) {
+                            foundItem.stok = value;
+                            foundItem.subtotal = value * foundItem.harga;
+                        } else {
+                            // Jika value stok baru adalah 0, hapus item dari "Data Belanja Barang"
+                            var index = shoppingItems.indexOf(foundItem);
+                            shoppingItems.splice(index, 1);
+                        }
+                    } else if (value > 0 && value <= stok) {
+                        // Jika nama barang belum ada, tambahkan baris baru ke "Data Belanja Barang"
+                        var subtotal = value * harga;
+                        shoppingItems.push({ kode: kode, nama: nama, harga: harga, stok: value, subtotal: subtotal });
+                    } else {
+                        this.value = 0; // Reset nilai input stok jika melebihi stok tersedia
+                    }
+
+                    // Perbarui tampilan pada "Data Belanja Barang"
+                    updateShoppingTable();
+                });
+            });
+
+            // Fungsi untuk memperbarui tampilan pada "Data Belanja Barang"
+            function updateShoppingTable() {
+                var shoppingTableBody = document.querySelector('#example2penjualan2 tbody');
+                shoppingTableBody.innerHTML = '';
+                var totalBelanja = 0; // Variable untuk menyimpan total belanja
+
+                shoppingItems.forEach(function (item) {
+                    var newRow = document.createElement('tr');
+                    totalBelanja += item.subtotal; // Tambahkan subtotal ke total belanja
+                    newRow.innerHTML = '<td>' + item.nama + '</td><td>' + item.harga + '</td><td>' + item.stok + '</td><td>' + item.subtotal + '</td>';
+                    shoppingTableBody.appendChild(newRow);
+                });
+
+                // Tambahkan baris untuk menampilkan total belanja di bagian footer
+                var footerRow = document.querySelector('#example2penjualan2 tfoot');
+                if (shoppingItems.length > 0) {
+                    footerRow.innerHTML = '<th colspan="3">Total Belanja</th><td>' + totalBelanja + '</td>';
+                    // Tampilkan tombol "Bayar" dan "Cetak"
+                    document.getElementById('bayar').style.display = 'block';
+                } else {
+                    // Sembunyikan total belanja dan tombol "Bayar" jika tidak ada barang dalam "Data Belanja Barang"
+                    footerRow.innerHTML = '';
+                    document.getElementById('bayar').style.display = 'none';
+                }
+
+                // Update total belanja di dalam data pembayaran
+                paymentData.total = totalBelanja;
+            }
+
+            // Event listener untuk tombol bayar
+            document.getElementById('bayar').addEventListener('click', function () {
+                // Menampilkan modal bayar
+                $('#bayarModal').modal('show');
+            });
+
+            // Event listener untuk input uang
+            document.getElementById('uang').addEventListener('input', function () {
+                // Mengambil nilai pembayaran dari input
+                paymentData.bayar = parseFloat(this.value);
+
+                // Menghitung kembalian
+                paymentData.kembalian = paymentData.bayar - paymentData.total;
+
+                // Menampilkan kembalian pada input kembalian
+                document.getElementById('kembali').value = paymentData.kembalian;
+
+                // Menyembunyikan tombol bayar dan cetak jika kembalian kurang dari 0 atau NaN
+                if (paymentData.kembalian < 0 || isNaN(paymentData.kembalian)) {
+                    document.getElementById('bayarBtn').style.display = 'none';
+                    document.getElementById('cetakBtn').style.display = 'none';
+                } else {
+                    document.getElementById('bayarBtn').style.display = 'block';
+                    document.getElementById('cetakBtn').style.display = 'block';
+                }
+            });
+
+            // Event listener untuk tombol bayar di modal
+            document.getElementById('bayarBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Mengambil data dari form
+                var formData = {
+                    shoppingItems: shoppingItems,
+                    paymentData: paymentData
+                };
+
+                // Mengirim permintaan AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/tambahpenjualan',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                    },
+                    success: function (response) {
+                        console.log(response); // Log respons untuk di-debug
+
+                        // Menutup modal bayar
+                        $('#bayarModal').modal('hide');
+
+                        // Reset nilai pembayaran
+                        $('#uang').val('');
+
+                        // Reset data belanja
+                        shoppingItems = [];
+                        updateShoppingTable();
+
+                        // Reset data pembayaran
+                        paymentData.bayar = 0;
+                        paymentData.total = 0;
+                        paymentData.kembalian = 0;
+
+                        if (response.success) {
+                            document.location.href = "{{ route('penjualan') }}";
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText); // Tangkap dan log kesalahan jika terjadi
+                        alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
+                    }
+                });
+            });
+
+            // Event listener untuk tombol cetak
+            document.getElementById('cetakBtn').addEventListener('click', function () {
+                cetakNota(shoppingItems, paymentData);
+            });
+
+            function cetakNota(shoppingItems, paymentData) {
+                var notaWindow = window.open('', 'PRINT', 'height=600,width=100');
+
+                notaWindow.document.write('<html><head><title>Nota Belanja</title>');
+                notaWindow.document.write('<style>');
+                notaWindow.document.write('@page { margin: 0 }');
+                notaWindow.document.write('body { margin: 0; font-size:10px;font-family: monospace; font-family: Arial, sans-serif; font-size: 12px; }');
+                notaWindow.document.write('td { font-size:10px; }');
+                notaWindow.document.write('.sheet { margin: 0;overflow: hidden; position: relative; box-sizing: border-box; page-break-after: always;}');
+                notaWindow.document.write('body.struk        .sheet { width: 58mm; }');
+                notaWindow.document.write('body.struk .sheet        { padding: 2mm; }');
+                notaWindow.document.write('.txt-left { text-align: left;}');
+                notaWindow.document.write('.txt-center { text-align: center;}');
+                notaWindow.document.write('.txt-right { text-align: right;}');
+                notaWindow.document.write('@media screen {body { background: #e0e0e0;font-family: monospace; }.sheet {background: white;box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);margin: 5mm;}}');
+                notaWindow.document.write('@media print {body { font-family: monospace; }body.struk                 { width: 58mm; text-align: left;}body.struk .sheet          { padding: 2mm; }.txt-left { text-align: left;}.txt-center { text-align: center;}.txt-right { text-align: right;}}');
+                notaWindow.document.write('</style>');
+                notaWindow.document.write('</head><body class="struk">');
+                notaWindow.document.write('<table cellpadding="0" cellspacing="0">');
+                notaWindow.document.write('<tr><td>Toko Kamto</td></tr>');
+                notaWindow.document.write('<tr><td>Dsn. Brangkal Ds. KedungPanji Kec. Lembeyan, Kabupaten Magetan Jawa Timur 63372</td></tr></table>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+                // notaWindow.document.write('<p>Receipt: ' + new Date().getTime() + '</p>');
+                notaWindow.document.write('<p>Tanggal: ' + new Date().toLocaleString() + '</p>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+
+                notaWindow.document.write('<table>');
+                notaWindow.document.write('<thead><tr><th>Nama</th><th>Harga</th><th>Jumlah</th><th>Subtotal</th></tr></thead>');
+                notaWindow.document.write('<tbody>');
+
+                shoppingItems.forEach(function (item) {
+                    notaWindow.document.write('<tr><td>' + item.nama + '</td><td>' + item.harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td><td>' + item.stok + '</td><td>' + item.subtotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td></tr>');
+                });
+
+                notaWindow.document.write('</tbody>');
+                notaWindow.document.write('</table>');
+
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p class="total">Total: ' + paymentData.total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p class="bayar">Bayar: ' + paymentData.bayar.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p class="kembalian">Kembalian: ' + paymentData.kembalian.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p>Terima kasih telah berbelanja!</p>');
+
+                notaWindow.document.write('</body></html>');
+
+                notaWindow.document.close();
+                notaWindow.focus();
+                notaWindow.print();
+                notaWindow.close();
+            }
+            document.getElementById('searchInputPenjualan').focus();
+
+
+
+
+            // // Fungsi untuk mencari barang berdasarkan kode atau nama
+            // function searchItems() {
+            //     var searchValue = document.getElementById('searchInputPenjualan').value.toLowerCase();
+            //     var rows = document.querySelectorAll('#example2penjualan tbody tr');
+
+            //     rows.forEach(function(row) {
+            //         var kode = row.querySelector('td:nth-child(1)').innerText.toLowerCase();
+            //         var nama = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
+            //         if (kode.includes(searchValue) || nama.includes(searchValue)) {
+            //             row.style.display = '';
+            //         } else {
+            //             row.style.display = 'none';
+            //         }
+            //     });
+            // }
+
+            // // Event listener untuk input pencarian
+            // document.getElementById('searchInputPenjualan').addEventListener('input', searchItems);
+
+            // // Event listener untuk tombol enter pada input pencarian
+            // document.getElementById('searchInputPenjualan').addEventListener('keypress', function(e) {
+            //     if (e.key === 'Enter') {
+            //         e.preventDefault();
+
+            //         var searchValue = this.value.trim().toLowerCase(); // Mengambil nilai pencarian, menghapus spasi ekstra, dan menjadikan lowercase
+
+            //         var rows = document.querySelectorAll('#example2penjualan tbody tr');
+            //         var foundItems = [];
+
+            //         // Loop melalui setiap baris untuk mencari barang yang cocok dengan pencarian
+            //         rows.forEach(function(row) {
+            //             var kode = row.querySelector('td:nth-child(1)').innerText.toLowerCase();
+            //             var nama = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
+            //             var stockInput = row.querySelector('.stock');
+            //             var maxStock = parseInt(stockInput.max);
+
+            //             if (kode.includes(searchValue) || nama.includes(searchValue)) {
+            //                 foundItems.push(row);
+            //             }
+            //         });
+
+            //         // Jika hanya satu item yang ditemukan dan jumlahnya kurang dari maksimum, tambahkan ke "Data Belanja Barang"
+            //         if (foundItems.length === 1) {
+            //             var foundItem = foundItems[0];
+            //             var stockInput = foundItem.querySelector('.stock');
+            //             var currentStock = parseInt(stockInput.value);
+            //             var maxStock = parseInt(stockInput.max);
+
+            //             if (currentStock < maxStock) {
+            //                 stockInput.value = currentStock + 1;
+            //                 stockInput.dispatchEvent(new Event('input'));
+            //             }
+            //         }
+
+            //         // Kosongkan nilai input setelah selesai pencarian
+            //         this.value = '';
+
+            //         // Fokus kembali ke input pencarian
+            //         this.focus();
+
+            //         // Tampilkan kembali semua baris
+            //         rows.forEach(function(row) {
+            //             row.style.display = '';
+            //         });
+            //     }
+            // });
+
+
+
+
+        });
+
+    </script> --}}
+    
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Array untuk menyimpan informasi barang yang ada di "Data Belanja Barang"
+            var shoppingItems = [];
+            // Objek untuk menyimpan informasi pembayaran
+            var paymentData = {
+                bayar: 0,
+                total: 0,
+                kembalian: 0
+            };
+
+            // Fungsi untuk memperbarui tampilan pada "Data Belanja Barang"
+            function updateShoppingTable() {
+                var shoppingTableBody = document.querySelector('#example2penjualan2 tbody');
+                shoppingTableBody.innerHTML = '';
+                var totalBelanja = 0; // Variable untuk menyimpan total belanja
+
+                shoppingItems.forEach(function (item) {
+                    var newRow = document.createElement('tr');
+                    totalBelanja += item.subtotal; // Tambahkan subtotal ke total belanja
+                    newRow.innerHTML = '<td>' + item.nama + '</td><td>' + item.harga + '</td><td>' + item.stok + '</td><td>' + item.subtotal + '</td>';
+                    shoppingTableBody.appendChild(newRow);
+                });
+
+                // Tambahkan baris untuk menampilkan total belanja di bagian footer
+                var footerRow = document.querySelector('#example2penjualan2 tfoot');
+                if (shoppingItems.length > 0) {
+                    footerRow.innerHTML = '<th colspan="3">Total Belanja</th><td>' + totalBelanja + '</td>';
+                    // Tampilkan tombol "Bayar" dan "Cetak"
+                    document.getElementById('bayar').style.display = 'block';
+                } else {
+                    // Sembunyikan total belanja dan tombol "Bayar" jika tidak ada barang dalam "Data Belanja Barang"
+                    footerRow.innerHTML = '';
+                    document.getElementById('bayar').style.display = 'none';
+                }
+
+                // Update total belanja di dalam data pembayaran
+                paymentData.total = totalBelanja;
+            }
+
+            // Fungsi untuk menampilkan modal bayar dengan total harga
+            function showBayarModal(totalHarga) {
+                // Mengambil elemen input total harga di dalam modal bayar
+                var totalHargaInput = document.getElementById('totalHarga');
+                // Mengisi nilai total harga pada input di dalam modal
+                totalHargaInput.value = totalHarga;
+                // Menampilkan modal bayar
+                $('#bayarModal').modal('show');
+            }
+
+            // Event listener untuk tombol bayar
+            document.getElementById('bayar').addEventListener('click', function () {
+                // Menampilkan modal bayar dengan total harga
+                showBayarModal(paymentData.total);
+            });
+
+            // Event listener untuk input uang
+            document.getElementById('uang').addEventListener('input', function () {
+                // Mengambil nilai uang dari input
+                var uang = parseFloat(this.value);
+                // Mengambil total harga dari "Data Belanja Barang"
+                var totalHarga = parseFloat(document.getElementById('totalHarga').value);
+                // Menghitung kembalian
+                var kembalian = uang - totalHarga;
+                // Menampilkan kembalian pada input kembalian
+                document.getElementById('kembali').value = kembalian;
+                // Menyembunyikan tombol bayar jika kembalian kurang dari atau sama dengan 0
+                if (kembalian <= 0 || isNaN(kembalian)) {
+                    document.getElementById('bayarBtn').style.display = 'none';
+                    document.getElementById('cetakBtn').style.display = 'none';
+                } else {
+                    document.getElementById('bayarBtn').style.display = 'block';
+                    document.getElementById('cetakBtn').style.display = 'block';
+                }
+            });
+
+            // Fungsi untuk menghitung total harga dari "Data Belanja Barang"
+            function calculateTotalHarga() {
+                var totalHarga = shoppingItems.reduce(function (total, item) {
+                    return total + (item.harga * item.stok);
+                }, 0);
+
+                return totalHarga;
+            }
+
+            // Event listener untuk tombol bayar di modal
+            document.getElementById('bayarBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Mengambil data dari form
+                var formData = {
+                    shoppingItems: shoppingItems,
+                    paymentData: paymentData
+                };
+
+                // Mengirim permintaan AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/tambahpenjualan',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                    },
+                    success: function (response) {
+                        console.log(response); // Log respons untuk di-debug
+
+                        // Menutup modal bayar
+                        $('#bayarModal').modal('hide');
+
+                        // Reset nilai pembayaran
+                        $('#uang').val('');
+
+                        // Reset data belanja
+                        shoppingItems = [];
+                        updateShoppingTable();
+
+                        // Reset data pembayaran
+                        paymentData.bayar = 0;
+                        paymentData.total = 0;
+                        paymentData.kembalian = 0;
+
+                        if (response.success) {
+                            document.location.href = "{{ route('penjualan') }}";
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText); // Tangkap dan log kesalahan jika terjadi
+                        alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
+                    }
+                });
+            });
+
+            // Event listener untuk tombol cetak
+            document.getElementById('cetakBtn').addEventListener('click', function () {
+                cetakNota(shoppingItems, paymentData);
+            });
+
+            // Fungsi untuk mencetak nota
+            function cetakNota(shoppingItems, paymentData) {
+                var notaWindow = window.open('', 'PRINT', 'height=600,width=100');
+
+                notaWindow.document.write('<html><head><title>Nota Belanja</title>');
+                notaWindow.document.write('<style>');
+                notaWindow.document.write('@page { margin: 0 }');
+                notaWindow.document.write('body { margin: 0; font-size:10px;font-family: monospace; font-family: Arial, sans-serif; font-size: 12px; }');
+                notaWindow.document.write('td { font-size:10px; }');
+                notaWindow.document.write('.sheet { margin: 0;overflow: hidden; position: relative; box-sizing: border-box; page-break-after: always;}');
+                notaWindow.document.write('body.struk        .sheet { width: 58mm; }');
+                notaWindow.document.write('body.struk .sheet { padding: 2mm; }');
+                notaWindow.document.write('.txt-left { text-align: left;}');
+                notaWindow.document.write('.txt-center { text-align: center;}');
+                notaWindow.document.write('.txt-right { text-align: right;}');
+                notaWindow.document.write('@media screen {body { background: #e0e0e0;font-family: monospace; }.sheet {background: white;box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);margin: 5mm;}}');
+                notaWindow.document.write('@media print {body { font-family: monospace; }body.struk { width: 58mm; text-align: left;}body.struk .sheet { padding: 2mm; }.txt-left { text-align: left;}.txt-center { text-align: center;}.txt-right { text-align: right;}}');
+                notaWindow.document.write('</style>');
+                notaWindow.document.write('</head><body class="struk">');
+                notaWindow.document.write('<table cellpadding="0" cellspacing="0">');
+                notaWindow.document.write('<tr><td>Toko Kamto</td></tr>');
+                notaWindow.document.write('<tr><td>Dsn. Brangkal Ds. KedungPanji Kec. Lembeyan, Kabupaten Magetan Jawa Timur 63372</td></tr></table>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p>Tanggal: ' + new Date().toLocaleString() + '</p>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+
+                notaWindow.document.write('<table>');
+                notaWindow.document.write('<thead><tr><th>Nama</th><th>Harga</th><th>Jumlah</th><th>Subtotal</th></tr></thead>');
+                notaWindow.document.write('<tbody>');
+
+                shoppingItems.forEach(function (item) {
+                    notaWindow.document.write('<tr><td>' + item.nama + '</td><td>' + item.harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td><td>' + item.stok + '</td><td>' + item.subtotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td></tr>');
+                });
+
+                notaWindow.document.write('</tbody>');
+                notaWindow.document.write('</table>');
+
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p class="total">Total: ' + paymentData.total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p class="bayar">Bayar: ' + paymentData.bayar.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p class="kembalian">Kembalian: ' + paymentData.kembalian.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p>Terima kasih telah berbelanja!</p>');
+
+                notaWindow.document.write('</body></html>');
+
+                notaWindow.document.close();
+                notaWindow.focus();
+                notaWindow.print();
+                notaWindow.close();
+            }
+
+            // Fungsi untuk menambahkan event listener pada input stok
+            function addStockEventListener(stockInput, barang) {
+                stockInput.addEventListener('input', function () {
+                    var value = parseInt(this.value);
+                    var row = this.closest('tr');
+                    var kode = barang.kodeBarang;
+                    var nama = barang.namaBarang;
+                    var harga = parseFloat(barang.hargaJual);
+                    var stok = parseInt(barang.stok);
+
+                    // Periksa apakah nama barang sudah ada di "Data Belanja Barang"
+                    var foundItem = shoppingItems.find(item => item.nama === nama);
+                    if (foundItem) {
+                        // Jika value stok baru lebih besar dari 0 dan tidak melebihi stok tersedia, update stok pada "Data Belanja Barang"
+                        if (value > 0 && value <= stok) {
+                            foundItem.stok = value;
+                            foundItem.subtotal = value * foundItem.harga;
+                        } else {
+                            // Jika value stok baru adalah 0, hapus item dari "Data Belanja Barang"
+                            var index = shoppingItems.indexOf(foundItem);
+                            shoppingItems.splice(index, 1);
+                        }
+                    } else if (value > 0 && value <= stok) {
+                        // Jika nama barang belum ada, tambahkan baris baru ke "Data Belanja Barang"
+                        var subtotal = value * harga;
+                        shoppingItems.push({ kode: kode, nama: nama, harga: harga, stok: value, subtotal: subtotal });
+                    } else {
+                        this.value = 0; // Reset nilai input stok jika melebihi stok tersedia
+                    }
+
+                    // Perbarui tampilan pada "Data Belanja Barang"
+                    updateShoppingTable();
+                });
+            }
+
+            // Event listener untuk input pencarian barang
+            const searchInput = document.getElementById('searchInputPenjualan');
+            const barangTableBody = document.getElementById('barangTableBody');
+
+            searchInput.addEventListener('input', function () {
+                const query = searchInput.value.trim();
+
+                fetch(`/search-barang?query=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        barangTableBody.innerHTML = '';
+
+                        if (data.length > 0) {
+                            data.forEach(barang => {
+                                const row = document.createElement('tr');
+
+                                row.innerHTML = `
+                                    <td>${barang.kodeBarang}</td>
+                                    <td>${barang.namaBarang}</td>
+                                    <td>${barang.hargaJual}</td>
+                                    <td>${barang.stok}</td>
+                                    <td class="text-center">
+                                        <input type="number" class="stock form-control" value="0" min="0" max="${barang.stok}" style="width: 100px;">
+                                    </td>
+                                `;
+
+                                barangTableBody.appendChild(row);
+
+                                // Tambahkan event listener untuk input stok
+                                var stockInput = row.querySelector('.stock');
+                                addStockEventListener(stockInput, barang);
+                            });
+                        } else {
+                            const emptyRow = document.createElement('tr');
+                            emptyRow.innerHTML = '<td colspan="5" class="text-center">Tidak ada data ditemukan</td>';
+                            barangTableBody.appendChild(emptyRow);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var shoppingItems = [];
+            var paymentData = {
+                bayar: 0,
+                total: 0,
+                kembalian: 0
+            };
+
+            var stockValues = {}; // Objek untuk menyimpan nilai stok
+
+            function updateShoppingTable() {
+                var shoppingTableBody = document.querySelector('#example2penjualan2 tbody');
+                shoppingTableBody.innerHTML = '';
+                var totalBelanja = 0;
+
+                shoppingItems.forEach(function (item) {
+                    var newRow = document.createElement('tr');
+                    totalBelanja += item.subtotal;
+                    newRow.innerHTML = '<td>' + item.nama + '</td><td>' + item.harga + '</td><td>' + item.stok + '</td><td>' + item.subtotal + '</td>';
+                    shoppingTableBody.appendChild(newRow);
+                });
+
+                var footerRow = document.querySelector('#example2penjualan2 tfoot');
+                if (shoppingItems.length > 0) {
+                    footerRow.innerHTML = '<th colspan="3">Total Belanja</th><td>' + totalBelanja + '</td>';
+                    document.getElementById('bayar').style.display = 'block';
+                } else {
+                    footerRow.innerHTML = '';
+                    document.getElementById('bayar').style.display = 'none';
+                }
+
+                // Perbarui nilai total pembayaran
+                paymentData.total = totalBelanja;
+            }
+
+            function showBayarModal(totalHarga) {
+                var totalHargaInput = document.getElementById('totalHarga');
+                totalHargaInput.value = totalHarga;
+                $('#bayarModal').modal('show');
+            }
+
+            document.getElementById('bayar').addEventListener('click', function () {
+                showBayarModal(paymentData.total);
+            });
+
+            document.getElementById('uang').addEventListener('input', function () {
+                paymentData.bayar = parseFloat(this.value);
+                paymentData.kembalian = paymentData.bayar - paymentData.total;
+                document.getElementById('kembali').value = paymentData.kembalian;
+
+                if (paymentData.kembalian <= 0 || isNaN(paymentData.kembalian)) {
+                    document.getElementById('bayarBtn').style.display = 'none';
+                    document.getElementById('cetakBtn').style.display = 'none';
+                } else {
+                    document.getElementById('bayarBtn').style.display = 'block';
+                    document.getElementById('cetakBtn').style.display = 'block';
+                }
+            });
+
+            function calculateTotalHarga() {
+                var totalHarga = shoppingItems.reduce(function (total, item) {
+                    return total + (item.harga * item.stok);
+                }, 0);
+
+                return totalHarga;
+            }
+
+            document.getElementById('bayarBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                var formData = {
+                    shoppingItems: shoppingItems,
+                    paymentData: paymentData
+                };
+                console.log(formData);
+                $.ajax({
+                    type: 'POST',
+                    url: '/tambahpenjualan',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $('#bayarModal').modal('hide');
+                        $('#uang').val('');
+                        shoppingItems = [];
+                        updateShoppingTable();
+                        paymentData.bayar = 0;
+                        paymentData.total = 0;
+                        paymentData.kembalian = 0;
+
+                        if (response.success) {
+                            document.location.href = "{{ route('penjualan') }}";
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
+                    }
+                });
+            });
+          
+    
+            document.getElementById('cetakBtn').addEventListener('click', function () {
+                cetakNota(shoppingItems, paymentData);
+
+            });
+    
+            function cetakNota(shoppingItems, paymentData) {
+                var notaWindow = window.open('', 'PRINT', 'height=600,width=100');
+    
+                notaWindow.document.write('<html><head><title>Nota Belanja</title>');
+                notaWindow.document.write('<style>');
+                notaWindow.document.write('@page { margin: 0 }');
+                notaWindow.document.write('body { margin: 0; font-size:10px;font-family: monospace; font-family: Arial, sans-serif; font-size: 12px; }');
+                notaWindow.document.write('td { font-size:10px; }');
+                notaWindow.document.write('.sheet { margin: 0;overflow: hidden; position: relative; box-sizing: border-box; page-break-after: always;}');
+                notaWindow.document.write('body.struk        .sheet { width: 58mm; }');
+                notaWindow.document.write('body.struk .sheet { padding: 2mm; }');
+                notaWindow.document.write('.txt-left { text-align: left;}');
+                notaWindow.document.write('.txt-center { text-align: center;}');
+                notaWindow.document.write('.txt-right { text-align: right;}');
+                notaWindow.document.write('@media screen {body { background: #e0e0e0;font-family: monospace; }.sheet {background: white;box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);margin: 5mm;}}');
+                notaWindow.document.write('@media print {body { font-family: monospace; }body.struk { width: 58mm; text-align: left;}body.struk .sheet { padding: 2mm; }.txt-left { text-align: left;}.txt-center { text-align: center;}.txt-right { text-align: right;}}');
+                notaWindow.document.write('</style>');
+                notaWindow.document.write('</head><body class="struk">');
+                notaWindow.document.write('<table cellpadding="0" cellspacing="0">');
+                notaWindow.document.write('<tr><td>Toko Kamto</td></tr>');
+                notaWindow.document.write('<tr><td>Dsn. Brangkal Ds. KedungPanji Kec. Lembeyan, Kabupaten Magetan Jawa Timur 63372</td></tr></table>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p>Tanggal: ' + new Date().toLocaleString() + '</p>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+    
+                notaWindow.document.write('<table>');
+                notaWindow.document.write('<thead><tr><th>Nama</th><th>Harga</th><th>Jumlah</th><th>Subtotal</th></tr></thead>');
+                notaWindow.document.write('<tbody>');
+    
+                shoppingItems.forEach(function (item) {
+                    notaWindow.document.write('<tr><td>' + item.nama + '</td><td>' + item.harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td><td>' + item.stok + '</td><td>' + item.subtotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td></tr>');
+                });
+    
+                notaWindow.document.write('</tbody>');
+                notaWindow.document.write('</table>');
+    
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p class="total">Total: ' + paymentData.total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p class="bayar">Bayar: ' + paymentData.bayar.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p class="kembalian">Kembalian: ' + paymentData.kembalian.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+                notaWindow.document.write('<p>---------------------------------</p>');
+                notaWindow.document.write('<p>Terima kasih telah berbelanja!</p>');
+    
+                notaWindow.document.write('</body></html>');
+    
+                notaWindow.document.close();
+                notaWindow.focus();
+                notaWindow.print();
+                notaWindow.close();
+            }
+    
+            function addStockEventListener(stockInput, barang) {
+                stockInput.addEventListener('input', function () {
+                    var value = parseInt(this.value);
+                    var row = this.closest('tr');
+                    var kode = barang.kodeBarang;
+                    var nama = barang.namaBarang;
+                    var harga = parseFloat(barang.hargaJual);
+                    var stok = parseInt(barang.stok);
+    
+                    stockValues[nama] = value; // Simpan nilai stok di stockValues
+    
+                    var foundItem = shoppingItems.find(item => item.nama === nama);
+                    if (foundItem) {
+                        if (value > 0 && value <= stok) {
+                            foundItem.stok = value;
+                            foundItem.subtotal = value * foundItem.harga;
+                        } else {
+                            var index = shoppingItems.indexOf(foundItem);
+                            shoppingItems.splice(index, 1);
+                        }
+                    } else if (value > 0 && value <= stok) {
+                        var subtotal = value * harga;
+                        shoppingItems.push({ kode: kode, nama: nama, harga: harga, stok: value, subtotal: subtotal });
+                    } else {
+                        this.value = 0;
+                    }
+    
+                    updateShoppingTable();
+                });
+            }
+            document.getElementById('searchInputPenjualan').focus();
+    
+            const searchInput = document.getElementById('searchInputPenjualan');
+            const barangTableBody = document.getElementById('barangTableBody');
+    
+            searchInput.addEventListener('input', function () {
+                const query = searchInput.value.trim();
+    
+                fetch(`/search-barang?query=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        barangTableBody.innerHTML = '';
+    
+                        if (data.length > 0) {
+                            data.forEach(barang => {
+                                const row = document.createElement('tr');
+    
+                                row.innerHTML = `
+                                    <td>${barang.kodeBarang}</td>
+                                    <td>${barang.namaBarang}</td>
+                                    <td>${barang.hargaJual}</td>
+                                    <td>${barang.stok}</td>
+                                    <td class="text-center">
+                                        <input type="number" class="stock form-control" value="${stockValues[barang.namaBarang] || 0}" min="0" max="${barang.stok}" style="width: 100px;">
+                                    </td>
+                                `;
+    
+                                barangTableBody.appendChild(row);
+    
+                                var stockInput = row.querySelector('.stock');
+                                addStockEventListener(stockInput, barang);
+                            });
+                        } else {
+                            const emptyRow = document.createElement('tr');
+                            emptyRow.innerHTML = '<td colspan="5" class="text-center">Tidak ada data ditemukan</td>';
+                            barangTableBody.appendChild(emptyRow);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+        document.getElementById('searchInputPenjualan').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+
+                var searchValue = this.value.trim().toLowerCase(); // Mengambil nilai pencarian, menghapus spasi ekstra, dan menjadikan lowercase
+                
+                var rows = document.querySelectorAll('#example2penjualan tbody tr');
+                var foundItems = [];
+
+                // Loop melalui setiap baris untuk mencari barang yang cocok dengan pencarian
+                rows.forEach(function(row) {
+                    var kode = row.querySelector('td:nth-child(1)').innerText.toLowerCase();
+                    var nama = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
+                    var stockInput = row.querySelector('.stock');
+                    var maxStock = parseInt(stockInput.max);
+
+                    if (kode.includes(searchValue) || nama.includes(searchValue)) {
+                        foundItems.push(row);
+                    }
+                });
+
+                // Jika hanya satu item yang ditemukan dan jumlahnya kurang dari maksimum, tambahkan ke "Data Belanja Barang"
+                if (foundItems.length === 1) {
+                    var foundItem = foundItems[0];
+                    var stockInput = foundItem.querySelector('.stock');
+                    var currentStock = parseInt(stockInput.value);
+                    var maxStock = parseInt(stockInput.max);
+
+                    if (currentStock < maxStock) {
+                        stockInput.value = currentStock + 1;
+                        stockInput.dispatchEvent(new Event('input'));
+                    }
+                }
+
+                // Kosongkan nilai input setelah selesai pencarian
+                this.value = '';
+
+                // Fokus kembali ke input pencarian
+                this.focus();
+
+                // Tampilkan kembali semua baris
+                rows.forEach(function(row) {
+                    row.style.display = '';
+                });
+            }
+        });
+
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -493,10 +1522,14 @@
                 document.getElementById('kembali').value = kembalian;
 
                 // Menyembunyikan tombol bayar jika kembalian kurang dari atau sama dengan 0
-                if (kembalian <= 0 || isNaN(kembalian)) {
+                if (kembalian <0 || isNaN(kembalian)) {
                     document.getElementById('bayarBtn').style.display = 'none';
+                    document.getElementById('cetakBtn').style.display = 'none';
+
                 } else {
                     document.getElementById('bayarBtn').style.display = 'block';
+                    document.getElementById('cetakBtn').style.display = 'block';
+
                 }
             });
 
@@ -522,6 +1555,7 @@
             }
         });
     </script>
+  
 
 
 

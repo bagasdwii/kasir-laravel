@@ -51,6 +51,8 @@
                 <form id="tambahpenjualan" >
                     @csrf
                     <input type="hidden" name="user_id" id="user_id" value="{{ $loggedInUser->id }}">
+                    {{-- <input type="hidden" name="jumlah" id="jumlah" value="{{ $shoppingItems->stok }}"> --}}
+
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-auto">
@@ -80,7 +82,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="cetakBtn" class="btn btn-default" style="display: none;">Cetak</button>
                         <button type="submit" id="bayarBtn" class="btn btn-primary" style="display: none;">Bayar</button>
                     </div>
                 </form>

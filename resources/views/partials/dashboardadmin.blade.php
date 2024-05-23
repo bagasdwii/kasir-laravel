@@ -60,11 +60,25 @@
                         <p>Penjualan</p>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->is('penjualan') ? 'active' : '' }}">
-                    <a href="/laporan" class="nav-link">
+                <li class="nav-item {{ request()->is('laporan') ? 'menu-is-opening menu-open' : ''  }}">
+                    <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Laporan</p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/laporan/laporanpembelian" class="nav-link {{ request()->is('laporan/laporanpembelian') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan Pembelian</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/laporan/laporanpembelian" class="nav-link {{ request()->is('laporan/laporanpembelian') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan Penjualan</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>

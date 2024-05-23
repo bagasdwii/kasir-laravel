@@ -88,6 +88,7 @@ Route::post('/tambahdetailretur', [DetailReturController::class, 'tambahdetailre
 // Define route to get jumlah by barang
 
 Route::get('/get-jumlah-by-detailpembelian', 'App\Http\Controllers\ReturController@getJumlahByDetailPembelian');
+Route::get('/search-barang', [PenjualanController::class, 'search'])->name('search.barang');
 
 Route::get('/penjualan', [PenjualanController::class, 'penjualan'])->name('penjualan')->middleware('auth');
 Route::post('/tambahpenjualan', [PenjualanController::class, 'tambahpenjualan']);
