@@ -60,28 +60,29 @@
                         <p>Penjualan</p>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->is('laporan') ? 'menu-is-opening menu-open' : ''  }}">
-                    <a href="#" class="nav-link">
+            </ul>
+        </li>
+        <li class="nav-item {{ request()->is('laporanpembelian', 'laporanpenjualan') ? 'menu-is-opening menu-open' : ''  }}">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>Laporan<i class="right fas fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/laporanpembelian" class="nav-link {{ request()->is('laporanpembelian') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Laporan</p>
+                        <p>Laporan Pembelian</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/laporan/laporanpembelian" class="nav-link {{ request()->is('laporan/laporanpembelian') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan Pembelian</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/laporan/laporanpembelian" class="nav-link {{ request()->is('laporan/laporanpembelian') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan Penjualan</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/laporanpenjualan" class="nav-link {{ request()->is('laporanpenjualan') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Laporan Penjualan</p>
+                    </a>
                 </li>
             </ul>
         </li>
+
         <li class="nav-item">
             <form id="logout-form" action="/logout" method="POST">
                 @csrf

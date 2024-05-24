@@ -44,51 +44,98 @@ class PenjualanController extends Controller
         // Ambil semua data Categori tanpa filter user_id
         return view('penjualan', compact('loggedInUser'));
     }
+    // public function tambahpenjualan(Request $request)
+    // {
+    //     DB::beginTransaction();
+    //     try {
+    //         $user_id = $request->user()->id;
+    //         $tanggal = now();
+    
+    //         // Ambil ID penjualan baru
+    //         Log::debug('Request data:', $request->all());
+    //         $penjualan_id = Penjualan::create([
+    //             'user_id' => $user_id,
+    //             'tanggal' => $tanggal,
+    //             'totalHarga' => $request->paymentData['total'] ?? 0,
+    //             'uang' => $request->paymentData['bayar'] ?? 0,
+    //             'kembalian' => $request->paymentData['kembalian'] ?? 0,
+    //         ])->id;
+    
+    //         // Simpan data detail penjualan dan perbarui stok barang
+    //         foreach ($request->shoppingItems as $item) {
+    //             DetailPenjualan::create([
+    //                 'penjualan_id' => $penjualan_id,
+    //                 'barang_id' => $item['kode'],
+    //                 'harga' => $item['harga'] ?? 0,
+    //                 'jumlah' => $item['stok'] ?? 0,
+    //                 'subTotal' => $item['subtotal'] ?? 0,
+    //             ]);
+                
+              
+              
+                
+    //             $barang = Barang::where('kodeBarang', $item['kode'])->first(); // Pastikan metode pencarian ini cocok dengan struktur database Anda
+
+    //             if ($barang) {
+                
+
+    //                 $barang->stok -= $item['stok'];
+    //                 $barang->save();
+    //             } else {
+                    
+    //             }
+
+    //         }
+    
+    //         DB::commit();
+    
+    //         return ['success' => true];
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         Log::error('Transaction error:', ['error' => $e->getMessage()]);
+    //         return response()->json(['success' => false, 'error' => 'Transaction failed'], 500);
+    //     }
+    // }
     public function tambahpenjualan(Request $request)
     {
         DB::beginTransaction();
         try {
             $user_id = $request->user()->id;
             $tanggal = now();
-    
+
             // Ambil ID penjualan baru
-            Log::debug('Request data:', $request->all());
-            $penjualan_id = Penjualan::create([
+            $penjualan = Penjualan::create([
                 'user_id' => $user_id,
                 'tanggal' => $tanggal,
                 'totalHarga' => $request->paymentData['total'] ?? 0,
                 'uang' => $request->paymentData['bayar'] ?? 0,
                 'kembalian' => $request->paymentData['kembalian'] ?? 0,
-            ])->id;
-    
+            ]);
+            $penjualan_id = $penjualan->id;
+
             // Simpan data detail penjualan dan perbarui stok barang
             foreach ($request->shoppingItems as $item) {
-                DetailPenjualan::create([
-                    'penjualan_id' => $penjualan_id,
-                    'barang_id' => $item['kode'],
-                    'harga' => $item['harga'] ?? 0,
-                    'jumlah' => $item['stok'] ?? 0,
-                    'subTotal' => $item['subtotal'] ?? 0,
-                ]);
-                
-              
-              
-                
-                $barang = Barang::where('kodeBarang', $item['kode'])->first(); // Pastikan metode pencarian ini cocok dengan struktur database Anda
+                $barang = Barang::where('kodeBarang', $item['kode'])->first();
 
                 if ($barang) {
-                    Log::debug('Barang ditemukan: ' . $barang->nama);
+                    DetailPenjualan::create([
+                        'penjualan_id' => $penjualan_id,
+                        'barang_id' => $barang->id, // Gunakan id dari barang yang ditemukan
+                        'harga' => $item['harga'] ?? 0,
+                        'jumlah' => $item['stok'] ?? 0,
+                        'subTotal' => $item['subtotal'] ?? 0,
+                    ]);
 
+                    // Perbarui stok barang
                     $barang->stok -= $item['stok'];
                     $barang->save();
                 } else {
-                    Log::debug('Barang tidak ditemukan untuk kode: ' . $item['kode']);
+                    // Barang tidak ditemukan, lakukan sesuai kebutuhan aplikasi Anda
                 }
-
             }
-    
+
             DB::commit();
-    
+
             return ['success' => true];
         } catch (\Exception $e) {
             DB::rollBack();
@@ -96,7 +143,7 @@ class PenjualanController extends Controller
             return response()->json(['success' => false, 'error' => 'Transaction failed'], 500);
         }
     }
-    
+
 
 
 }

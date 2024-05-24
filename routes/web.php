@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PenjualanController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -11,9 +10,12 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\DetailReturController;
 use App\Http\Controllers\DetailPembelianController;
+use App\Http\Controllers\LaporanPembelianController;
+use App\Http\Controllers\LaporanPenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,9 +94,13 @@ Route::get('/search-barang', [PenjualanController::class, 'search'])->name('sear
 
 Route::get('/penjualan', [PenjualanController::class, 'penjualan'])->name('penjualan')->middleware('auth');
 Route::post('/tambahpenjualan', [PenjualanController::class, 'tambahpenjualan']);
-Route::get('/tampilbarang/{id}', [BarangController::class, 'tampilbarang'])->middleware('auth');
-Route::post('/updatebarang/{id}', [BarangController::class, 'updatebarang']);
-Route::get('/deletebarang/{id}', [BarangController::class, 'deletebarang'])->middleware('auth');
+
+Route::get('/laporanpenjualan', [LaporanPenjualanController::class, 'laporanpenjualan'])->name('laporanpenjualan')->middleware('auth');
+Route::post('/filterpenjualan', [LaporanPenjualanController::class, 'filterpenjualan'])->name('filterpenjualan');
+
+Route::get('/laporanpembelian', [LaporanPembelianController::class, 'laporanpembelian'])->name('laporanpembelian')->middleware('auth');
+Route::post('/filterpembelian', [LaporanPembelianController::class, 'filterpembelian'])->name('filterpembelian');
+
 
 
 
