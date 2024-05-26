@@ -9,6 +9,11 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Silahkan Login Terlebih Dahulu</p>
+                @if (session('loginError'))
+                <div class="alert alert-danger">
+                    {{ session('loginError') }}
+                </div>
+                @endif
                 <form action="/login" method="post">
                     @csrf
                     <div class="input-group mb-3">
@@ -34,9 +39,8 @@
                         </div>
                     </div>
                 </form>
-                {{-- <p class="m-3 text-center">
-                    <a href="register.html" class="text-center">Register a new membership</a>
-                </p> --}}
+                
+                
             </div>
         </div>
     </div>

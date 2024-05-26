@@ -37,6 +37,8 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 
+
+
 Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
 Route::post('/registrasi', [RegistrasiController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth', 'admin');
@@ -100,6 +102,8 @@ Route::post('/filterpenjualan', [LaporanPenjualanController::class, 'filterpenju
 
 Route::get('/laporanpembelian', [LaporanPembelianController::class, 'laporanpembelian'])->name('laporanpembelian')->middleware('auth', 'admin');
 Route::post('/filterpembelian', [LaporanPembelianController::class, 'filterpembelian'])->name('filterpembelian');
+
+
 
 
 

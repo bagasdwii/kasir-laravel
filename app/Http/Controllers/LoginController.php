@@ -29,7 +29,7 @@ class LoginController extends Controller
             }
         }
     
-        return back()->with('loginError', 'Login Failed');
+        return back()->with('loginError', 'Email atau password salah');
     }
     
     public function logout(){
@@ -41,5 +41,7 @@ class LoginController extends Controller
      
         return redirect('/login');
     }
+   
+    
 }
 
