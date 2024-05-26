@@ -55,12 +55,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
+              
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -180,7 +175,11 @@
     <script src="/AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
     <script src="/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
 
+    <script src="/AdminLTE-3.2.0/plugins/flot/jquery.flot.js"></script>
 
+    <script src="/AdminLTE-3.2.0/plugins/flot/plugins/jquery.flot.resize.js"></script>
+    
+    <script src="/AdminLTE-3.2.0/plugins/flot/plugins/jquery.flot.pie.js"></script>
 
     <script>
         $(function () {
@@ -416,7 +415,43 @@
                 });
             });
           
-    
+            document.getElementById('cetakBtn').addEventListener('click', function () {
+                cetakNota(shoppingItems, paymentData);
+                
+                var formData = {
+                    shoppingItems: shoppingItems,
+                    paymentData: paymentData
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/tambahpenjualan',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $('#bayarModal').modal('hide');
+                        $('#uang').val('');
+                        shoppingItems = [];
+                        updateShoppingTable();
+                        paymentData.bayar = 0;
+                        paymentData.total = 0;
+                        paymentData.kembalian = 0;
+
+                        if (response.success) {
+                            document.location.href = "{{ route('penjualan') }}";
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert('Terjadi kesalahan saat mengirim data ke database. Silakan coba lagi.');
+                    }
+                });
+            });
+
             document.getElementById('cetakBtn').addEventListener('click', function () {
                 cetakNota(shoppingItems, paymentData);
 
@@ -674,7 +709,53 @@
             });
         });
     </script>
-
+    {{-- <script>
+        var bar_data = {
+            data : [[1,10], [2,8], [3,4], [4,13], [5,17], [6,9]],
+            bars: { show: true }
+        }
+        $.plot('#bar-chart', [bar_data], {
+        grid  : {
+            borderWidth: 1,
+            borderColor: '#f3f3f3',
+            tickColor  : '#f3f3f3'
+        },
+        series: {
+            bars: {
+            show: true, barWidth: 0.5, align: 'center',
+            },
+        },
+        colors: ['#3c8dbc'],
+        xaxis : {
+            ticks: [[1,'Januari'], [2,'Februari'], [3,'Maret'], [4,'April'], [5,'Mei'], [6,'Juni,'],
+            [7,'Juli'], [8,'Agustus'], [9,'September'], [10,'Oktober'], [11,'November'], [12,'Desember,']]
+        }
+        })
+    </script> --}}
+    @yield('dashboardchart')
+    
+    <script>
+        var bar_data = {
+            data : [[7,10], [8,8], [9,4], [10,13], [11,17], [12,100]],
+            bars: { show: true }
+        }
+        $.plot('#bar-chart2', [bar_data], {
+        grid  : {
+            borderWidth: 1,
+            borderColor: '#f3f3f3',
+            tickColor  : '#f3f3f3'
+        },
+        series: {
+            bars: {
+            show: true, barWidth: 0.5, align: 'center',
+            },
+        },
+        colors: ['#3c8dbc'],
+        xaxis : {
+            ticks: [[7,'Juli'], [8,'Agustus'], [9,'September'], [10,'Oktober'], [11,'November'], [12,'Desember,']]
+        }
+        })
+    </script>
 
 
 </body>

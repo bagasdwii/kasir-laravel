@@ -18,7 +18,7 @@ class DetailReturController extends Controller
         $retur = Retur::find($id);
         // Mencari pembelian berdasarkan ID dan user yang membuat pembelian
         $data1 = Retur::where('id', $id)
-                        ->where('user_id', $loggedInUser->id)
+                        // ->where('user_id', $loggedInUser->id)
                         ->first();
 
         if (!$data1) {
@@ -28,7 +28,9 @@ class DetailReturController extends Controller
         // Mencari detail pembelian terkait dengan pembelian yang ditemukan
         $data = DetailRetur::where('retur_id', $id)->get();
         $maxJumlah = $retur->jumlah - $retur->kembali;
-        $dBarang = Barang::where('user_id', $loggedInUser->id)->get();
+        // $dBarang = Barang::where('user_id', $loggedInUser->id)->get();
+        $dBarang = Barang::orderBy('created_at', 'desc')->get(); 
+
         return view('detailretur', compact('data', 'data1', 'loggedInUser', 'dBarang','maxJumlah'));
     }
 

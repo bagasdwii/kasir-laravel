@@ -11,23 +11,27 @@ class LoginController extends Controller
             'title'=>'Login'
         ]);
     }
-    public function authenticate(Request $request){
-        $credentials=$request->validate([
-            'email'=> 'required|email:dns',
-            'password'=> 'required'
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            'password' => 'required'
         ]);
-        // User::create($validateData);
-        // $request->session()->flash('success','registrasi berhasil');
-        // return redirect('/');
-        
-
-        if(Auth::attempt($credentials)){
+    
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+    
+            // Verifikasi peran setelah login
+            if (Auth::user()->role === 'admin') {
+                return redirect()->intended('/dashboard');
+            } else {
+                return redirect('/barang');
+            }
         }
+    
         return back()->with('loginError', 'Login Failed');
-
     }
+    
     public function logout(){
         Auth::logout();
  

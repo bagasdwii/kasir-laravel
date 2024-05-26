@@ -11,27 +11,38 @@ use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
 {
+    // public function supplier()
+    // {
+    //     // Periksa peran pengguna yang login
+    //     $loggedInUser = Auth::user();
+        
+     
+    //         // Jika yang login adalah admin, filter barang berdasarkan user_id
+    //     $data = Supplier::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
+    //     if ($loggedInUser->role === 'staff') {
+    //         // Jika yang login adalah staff
+    //         $adminUser = User::where('role', 'admin')->where('email', $loggedInUser->owner)->first(); // Cari user admin yang memiliki email yang sama dengan owner staff
+    //         if ($adminUser) {
+    //             // Jika admin ditemukan
+    //             $data = Supplier::where('user_id', $adminUser->id)->orderBy('created_at', 'desc')->get(); // Filter barang berdasarkan user_id admin
+    //         }
+    //         // Jika tidak ada admin yang cocok, maka $data tidak akan diatur
+    //     }
+
+    //     return view('supplier', compact('data', 'loggedInUser'));
+    // }
     public function supplier()
     {
         // Periksa peran pengguna yang login
         $loggedInUser = Auth::user();
+
+        // Ambil semua data Barang tanpa filter user_id
+        $data = Supplier::orderBy('created_at', 'desc')->get();
         
-     
-            // Jika yang login adalah admin, filter barang berdasarkan user_id
-        $data = Supplier::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
-        if ($loggedInUser->role === 'staff') {
-            // Jika yang login adalah staff
-            $adminUser = User::where('role', 'admin')->where('email', $loggedInUser->owner)->first(); // Cari user admin yang memiliki email yang sama dengan owner staff
-            if ($adminUser) {
-                // Jika admin ditemukan
-                $data = Supplier::where('user_id', $adminUser->id)->orderBy('created_at', 'desc')->get(); // Filter barang berdasarkan user_id admin
-            }
-            // Jika tidak ada admin yang cocok, maka $data tidak akan diatur
-        }
+      
 
         return view('supplier', compact('data', 'loggedInUser'));
     }
-
 
     
     public function tambahsupplier(Request $request){

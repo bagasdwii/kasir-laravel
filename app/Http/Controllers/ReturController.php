@@ -23,10 +23,15 @@ class ReturController extends Controller
         
      
             // Jika yang login adalah admin, filter barang berdasarkan user_id
-        $data = Retur::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
+        // $data = Retur::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
   
-        $dPembelian = Pembelian::where('user_id', $loggedInUser->id)->get();
-        $dBarang = Barang::where('user_id', $loggedInUser->id)->get();
+        // $dPembelian = Pembelian::where('user_id', $loggedInUser->id)->get();
+        // $dBarang = Barang::where('user_id', $loggedInUser->id)->get();
+        $data = Retur::orderBy('created_at', 'desc')->get(); 
+  
+        $dPembelian = Pembelian::orderBy('created_at', 'desc')->get(); 
+        
+        $dBarang = Barang::orderBy('created_at', 'desc')->get(); 
 
         return view('retur', compact('data', 'loggedInUser', 'dPembelian','dBarang'));
     }
@@ -76,7 +81,8 @@ class ReturController extends Controller
         $data = Retur::find($id);
         $loggedInUser = Auth::user();
         $loggedInOwner = Auth::user()->id; 
-        $dBarang = Barang::where('user_id', $loggedInUser->id)->get();
+        // $dBarang = Barang::where('user_id', $loggedInUser->id)->get();
+        $dBarang = Barang::orderBy('created_at', 'desc')->get(); 
 
         // dd($data);
         return view('/tampilretur', compact('data', 'loggedInUser','dBarang'));

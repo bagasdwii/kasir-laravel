@@ -12,20 +12,32 @@ use Illuminate\Support\Facades\Validator;
 
 class PembelianController extends Controller
 {
+    // public function pembelian()
+    // {
+    //     // Periksa peran pengguna yang login
+    //     $loggedInUser = Auth::user();
+        
+     
+    //         // Jika yang login adalah admin, filter barang berdasarkan user_id
+    //     $data = Pembelian::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
+    //     $dSupplier = Supplier::where('user_id', $loggedInUser->id)->get();
+    //     return view('pembelian', compact('data', 'loggedInUser','dSupplier'));
+    // }
     public function pembelian()
     {
         // Periksa peran pengguna yang login
         $loggedInUser = Auth::user();
+
+        // Ambil semua data Barang tanpa filter user_id
+        $data = Pembelian::orderBy('created_at', 'desc')->get();
         
-     
-            // Jika yang login adalah admin, filter barang berdasarkan user_id
-        $data = Pembelian::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
-        $dSupplier = Supplier::where('user_id', $loggedInUser->id)->get();
-        return view('pembelian', compact('data', 'loggedInUser','dSupplier'));
+        // Ambil semua data Categori tanpa filter user_id
+        $dSupplier = Supplier::all();
+
+        return view('pembelian', compact('data', 'loggedInUser', 'dSupplier'));
     }
 
 
-    // }
     public function tambahpembelian(Request $request){
         $user_id = $request->user()->id;
         $supplier_id = $request->input('supplier_id');

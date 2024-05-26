@@ -65,6 +65,12 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">Total</th>
+                                <td>Rp {{ number_format($reports->sum('subTotal'), 0, ',', '.') }}</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
               

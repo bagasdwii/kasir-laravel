@@ -2,14 +2,7 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
         data-accordion="false">
 
-        <li class="nav-item ">
-            <a href="/dashboard" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Dashboard
-                </p>
-            </a>
-        </li>
+
         <li class="nav-item">
             <a href="/barang" class="nav-link {{ request()->is('barang') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-briefcase"></i>
@@ -18,34 +11,50 @@
                 </p>
             </a>
         </li>
-        {{--  <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
+        <li class="nav-item">
+            <a href="/supplier" class="nav-link {{ request()->is('supplier') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-store"></i>
                 <p>
-                    Barang <i class="right fas fa-angle-left"></i>
+                    Supplier
+                </p>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->is('pembelian', 'retur', 'penjualan', 'laporan') ? 'menu-is-opening menu-open' : '' }}">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>
+                    Transaksi <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/pembelian" class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Kategori</p>
+                        <p>Pembelian</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/retur" class="nav-link {{ request()->is('retur') ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Barang</p>
+                        <p>Retur</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/penjualan" class="nav-link {{ request()->is('penjualan') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Penjualan</p>
                     </a>
                 </li>
             </ul>
-        </li>--}}
+        </li>
+       
+
         <li class="nav-item">
             <form id="logout-form" action="/logout" method="POST">
                 @csrf
                 <button type="submit" class="nav-link btn-danger text-left">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
-                    <p >
+                    <p>
                         Logout
                     </p>
                 </button>

@@ -39,21 +39,21 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
 Route::post('/registrasi', [RegistrasiController::class, 'store']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth', 'admin');
 
-Route::get('/karyawan', [KaryawanController::class, 'karyawan'])->middleware('auth');
-Route::get('/karyawan', [KaryawanController::class, 'karyawan'])->name('karyawan')->middleware('auth');
-Route::get('/tambahkaryawan', [KaryawanController::class, 'tambah'])->middleware('auth');
+Route::get('/karyawan', [KaryawanController::class, 'karyawan'])->middleware('auth', 'admin');
+Route::get('/karyawan', [KaryawanController::class, 'karyawan'])->name('karyawan')->middleware('auth', 'admin');
+Route::get('/tambahkaryawan', [KaryawanController::class, 'tambah'])->middleware(['auth', 'admin']);
 Route::post('/tambahdata', [KaryawanController::class, 'tambahdata']);
-Route::get('/tampilkaryawan/{id}', [KaryawanController::class, 'tampilkaryawan'])->middleware('auth');
+Route::get('/tampilkaryawan/{id}', [KaryawanController::class, 'tampilkaryawan'])->middleware('auth', 'admin');
 Route::post('/updatekaryawan/{id}', [KaryawanController::class, 'updatekaryawan']);
-Route::get('/deletekaryawan/{id}', [KaryawanController::class, 'delete'])->middleware('auth');
+Route::get('/deletekaryawan/{id}', [KaryawanController::class, 'delete'])->middleware('auth', 'admin');
 
 Route::get('/barang', [BarangController::class, 'barang'])->name('barang')->middleware('auth');
 Route::post('/tambahbarang', [BarangController::class, 'tambahbarang']);
 Route::get('/tampilbarang/{id}', [BarangController::class, 'tampilbarang'])->middleware('auth');
 Route::post('/updatebarang/{id}', [BarangController::class, 'updatebarang']);
-Route::get('/deletebarang/{id}', [BarangController::class, 'deletebarang'])->middleware('auth');
+Route::get('/deletebarang/{id}', [BarangController::class, 'deletebarang'])->middleware('auth', 'admin');
 
 
 Route::post('/tambahcategori', [BarangController::class, 'tambahcategori']);
@@ -95,10 +95,10 @@ Route::get('/search-barang', [PenjualanController::class, 'search'])->name('sear
 Route::get('/penjualan', [PenjualanController::class, 'penjualan'])->name('penjualan')->middleware('auth');
 Route::post('/tambahpenjualan', [PenjualanController::class, 'tambahpenjualan']);
 
-Route::get('/laporanpenjualan', [LaporanPenjualanController::class, 'laporanpenjualan'])->name('laporanpenjualan')->middleware('auth');
+Route::get('/laporanpenjualan', [LaporanPenjualanController::class, 'laporanpenjualan'])->name('laporanpenjualan')->middleware('auth', 'admin');
 Route::post('/filterpenjualan', [LaporanPenjualanController::class, 'filterpenjualan'])->name('filterpenjualan');
 
-Route::get('/laporanpembelian', [LaporanPembelianController::class, 'laporanpembelian'])->name('laporanpembelian')->middleware('auth');
+Route::get('/laporanpembelian', [LaporanPembelianController::class, 'laporanpembelian'])->name('laporanpembelian')->middleware('auth', 'admin');
 Route::post('/filterpembelian', [LaporanPembelianController::class, 'filterpembelian'])->name('filterpembelian');
 
 

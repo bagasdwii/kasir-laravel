@@ -132,7 +132,7 @@ class BarangController extends Controller
         $loggedInUser = Auth::user();
         $loggedInOwner = Auth::user()->id; 
 
-        $dCategori = Categori::where('user_id', $loggedInOwner)->get(); 
+        $dCategori =  Categori::all();
         // dd($data);
         return view('/tampilbarang', compact('data', 'loggedInUser', 'dCategori'));
        
