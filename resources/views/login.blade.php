@@ -1,37 +1,45 @@
 @extends('layouts.homenav')
 @section('containersatu')
-{{-- <div class="text-center d-flex align-items-center vh-100">
-  @if (session()->has('success'))
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ session('success') }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  @endif
-  @if (session()->has('loginError'))
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      {{ session('loginError') }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  @endif --}}
-  <main class="form-signin w-100 m-auto text-center">
-    <form action="/login" method="post">
-        @csrf
-        <h1 class="h3 mb-3 fw-normal">Please Login</h1>
 
-        <div class="form-floating">
-            <input type="email" class="form-control" name="email" id="email" placeholder="email@example.com" required>
-            <label for="email">Email address</label>
+<div class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Web</b>kasirku</a>
         </div>
-        <div class="form-floating">
-            <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-            <label for="password">Password</label>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Silahkan Login Terlebih Dahulu</p>
+                <form action="/login" method="post">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                    </div>
+                </form>
+                {{-- <p class="m-3 text-center">
+                    <a href="register.html" class="text-center">Register a new membership</a>
+                </p> --}}
+            </div>
         </div>
-        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Login</button>
-    </form>
-    <div class="mt-3">
-        <small><a href="/registrasi">Registrasi untuk admin</a></small>
     </div>
-</main>
-
 </div>
+
 @endsection
