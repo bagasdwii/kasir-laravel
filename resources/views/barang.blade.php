@@ -84,9 +84,9 @@
                                         <td>{{ $barang->categori->namaCategori }}</td>
                                         <td>{{ $barang->namaBarang }}</td>
                                         <td>{{ $barang->kodeBarang }}</td>
-                                        <td>{{ $barang->hargaBeli }}</td>
-                                        <td>{{ $barang->hargaJual }}</td>
-                                        <td>{{ $barang->stok }}</td>
+                                        <td>{{ number_format($barang->hargaBeli, 0, ',', '.') }}</td>
+                                        <td>{{ number_format($barang->hargaJual, 0, ',', '.') }}</td>
+                                        <td>{{ number_format($barang->stok, 0, ',', '.') }}</td>
                                         <td>
                                             <a href="/tampilbarang/{{ $barang->id }}" class="btn btn-info"> Edit </a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$barang->id}}">
@@ -173,6 +173,7 @@
                                             <label>Harga Beli</label>
                                             <input type="number" name="hargaBeli" id="hargaBeli" class="form-control"
                                                 placeholder="Harga Beli" required>
+                                                
                                         </div>
                                         <div class="form-group">
                                             <label>Harga Jual</label>

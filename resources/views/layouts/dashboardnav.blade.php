@@ -456,57 +456,116 @@
 
             });
     
+            // function cetakNota(shoppingItems, paymentData) {
+            //     var notaWindow = window.open('', 'PRINT', 'height=600,width=100');
+    
+            //     notaWindow.document.write('<html><head><title>Nota Belanja</title>');
+            //     notaWindow.document.write('<style>');
+            //     notaWindow.document.write('@page { margin: 0 }');
+            //     notaWindow.document.write('body { margin: 0; font-size:10px;font-family: monospace; font-family: Arial, sans-serif; font-size: 12px; }');
+            //     notaWindow.document.write('td { font-size:10px; }');
+            //     notaWindow.document.write('.sheet { margin: 0;overflow: hidden; position: relative; box-sizing: border-box; page-break-after: always;}');
+            //     notaWindow.document.write('body.struk        .sheet { width: 58mm; }');
+            //     notaWindow.document.write('body.struk .sheet { padding: 2mm; }');
+            //     notaWindow.document.write('.txt-left { text-align: left;}');
+            //     notaWindow.document.write('.txt-center { text-align: center;}');
+            //     notaWindow.document.write('.txt-right { text-align: right;}');
+            //     notaWindow.document.write('@media screen {body { background: #e0e0e0;font-family: monospace; }.sheet {background: white;box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);margin: 5mm;}}');
+            //     notaWindow.document.write('@media print {body { font-family: monospace; }body.struk { width: 58mm; text-align: left;}body.struk .sheet { padding: 2mm; }.txt-left { text-align: left;}.txt-center { text-align: center;}.txt-right { text-align: right;}}');
+            //     notaWindow.document.write('</style>');
+            //     notaWindow.document.write('</head><body class="struk">');
+            //     notaWindow.document.write('<table cellpadding="0" cellspacing="0">');
+            //     notaWindow.document.write('<tr><td>Toko Kamto</td></tr>');
+            //     notaWindow.document.write('<tr><td>Dsn. Brangkal Ds. KedungPanji Kec. Lembeyan, Kabupaten Magetan Jawa Timur 63372</td></tr></table>');
+            //     notaWindow.document.write('<p>---------------------------------</p>');
+            //     notaWindow.document.write('<p>Tanggal: ' + new Date().toLocaleString() + '</p>');
+            //     notaWindow.document.write('<p>---------------------------------</p>');
+    
+            //     notaWindow.document.write('<table>');
+            //     notaWindow.document.write('<thead><tr><th>Nama</th><th>Harga</th><th>Jumlah</th><th>Subtotal</th></tr></thead>');
+            //     notaWindow.document.write('<tbody>');
+    
+            //     shoppingItems.forEach(function (item) {
+            //         notaWindow.document.write('<tr><td>' + item.nama + '</td><td>' + item.harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td><td>' + item.stok + '</td><td>' + item.subtotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td></tr>');
+            //     });
+    
+            //     notaWindow.document.write('</tbody>');
+            //     notaWindow.document.write('</table>');
+    
+            //     notaWindow.document.write('<p>---------------------------------</p>');
+            //     notaWindow.document.write('<p class="total">Total: ' + paymentData.total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+            //     notaWindow.document.write('<p class="bayar">Bayar: ' + paymentData.bayar.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+            //     notaWindow.document.write('<p class="kembalian">Kembalian: ' + paymentData.kembalian.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
+            //     notaWindow.document.write('<p>---------------------------------</p>');
+            //     notaWindow.document.write('<p>Terima kasih telah berbelanja!</p>');
+    
+            //     notaWindow.document.write('</body></html>');
+    
+            //     notaWindow.document.close();
+            //     notaWindow.focus();
+            //     notaWindow.print();
+            //     notaWindow.close();
+            // }
             function cetakNota(shoppingItems, paymentData) {
                 var notaWindow = window.open('', 'PRINT', 'height=600,width=100');
-    
+
                 notaWindow.document.write('<html><head><title>Nota Belanja</title>');
+                notaWindow.document.write('<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">');
                 notaWindow.document.write('<style>');
                 notaWindow.document.write('@page { margin: 0 }');
-                notaWindow.document.write('body { margin: 0; font-size:10px;font-family: monospace; font-family: Arial, sans-serif; font-size: 12px; }');
-                notaWindow.document.write('td { font-size:10px; }');
-                notaWindow.document.write('.sheet { margin: 0;overflow: hidden; position: relative; box-sizing: border-box; page-break-after: always;}');
-                notaWindow.document.write('body.struk        .sheet { width: 58mm; }');
-                notaWindow.document.write('body.struk .sheet { padding: 2mm; }');
-                notaWindow.document.write('.txt-left { text-align: left;}');
-                notaWindow.document.write('.txt-center { text-align: center;}');
-                notaWindow.document.write('.txt-right { text-align: right;}');
-                notaWindow.document.write('@media screen {body { background: #e0e0e0;font-family: monospace; }.sheet {background: white;box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);margin: 5mm;}}');
-                notaWindow.document.write('@media print {body { font-family: monospace; }body.struk { width: 58mm; text-align: left;}body.struk .sheet { padding: 2mm; }.txt-left { text-align: left;}.txt-center { text-align: center;}.txt-right { text-align: right;}}');
+                notaWindow.document.write('body { margin: 0; font-size:12px; font-family: Roboto, Arial, sans-serif; }');
+                notaWindow.document.write('.sheet { width: 58mm; padding: 10px; box-sizing: border-box; }');
+                notaWindow.document.write('table { width: 100%; border-collapse: collapse; }');
+                notaWindow.document.write('td, th { padding: 5px; font-size: 12px; }');
+                notaWindow.document.write('.txt-left { text-align: left; }');
+                notaWindow.document.write('.txt-center { text-align: center; }');
+                notaWindow.document.write('.txt-right { text-align: right; }');
+                notaWindow.document.write('hr { border: none; border-top: 1px solid #000; margin: 10px 0; }');
+                notaWindow.document.write('.bold { font-weight: bold; }');
                 notaWindow.document.write('</style>');
-                notaWindow.document.write('</head><body class="struk">');
-                notaWindow.document.write('<table cellpadding="0" cellspacing="0">');
-                notaWindow.document.write('<tr><td>Toko Kamto</td></tr>');
-                notaWindow.document.write('<tr><td>Dsn. Brangkal Ds. KedungPanji Kec. Lembeyan, Kabupaten Magetan Jawa Timur 63372</td></tr></table>');
-                notaWindow.document.write('<p>---------------------------------</p>');
-                notaWindow.document.write('<p>Tanggal: ' + new Date().toLocaleString() + '</p>');
-                notaWindow.document.write('<p>---------------------------------</p>');
-    
-                notaWindow.document.write('<table>');
-                notaWindow.document.write('<thead><tr><th>Nama</th><th>Harga</th><th>Jumlah</th><th>Subtotal</th></tr></thead>');
-                notaWindow.document.write('<tbody>');
-    
+                notaWindow.document.write('</head><body>');
+                notaWindow.document.write('<div class="sheet">');
+                
+                // Header toko
+                notaWindow.document.write('<p class="txt-center bold"><strong>Toko Kamto</strong><br>');
+                notaWindow.document.write('Dsn. Brangkal Ds. KedungPanji Kec. Lembeyan, Kabupaten Magetan Jawa Timur 63372<br>');
+                notaWindow.document.write('Telp. 0812-3456-7890</p>');
+                
+                // Tanggal
+                notaWindow.document.write('<p class="txt-center bold">' + new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + '</p>');
+                
+                // Garis pemisah
+                notaWindow.document.write('<hr>');
+                
+                // Daftar belanjaan
                 shoppingItems.forEach(function (item) {
-                    notaWindow.document.write('<tr><td>' + item.nama + '</td><td>' + item.harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td><td>' + item.stok + '</td><td>' + item.subtotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</td></tr>');
+                    notaWindow.document.write('<p>' + item.nama + '<br>');
+                    notaWindow.document.write('Rp. ' + item.harga.toLocaleString('id-ID') + '  X' + item.stok + '  Rp. ' + item.subtotal.toLocaleString('id-ID') + '</p>');
                 });
-    
-                notaWindow.document.write('</tbody>');
-                notaWindow.document.write('</table>');
-    
-                notaWindow.document.write('<p>---------------------------------</p>');
-                notaWindow.document.write('<p class="total">Total: ' + paymentData.total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
-                notaWindow.document.write('<p class="bayar">Bayar: ' + paymentData.bayar.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
-                notaWindow.document.write('<p class="kembalian">Kembalian: ' + paymentData.kembalian.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + '</p>');
-                notaWindow.document.write('<p>---------------------------------</p>');
-                notaWindow.document.write('<p>Terima kasih telah berbelanja!</p>');
-    
+
+                // Garis pemisah
+                notaWindow.document.write('<hr>');
+
+                // Total belanja, bayar, dan kembalian
+                notaWindow.document.write('<p class="txt-right bold" style="padding-right:10px";>Total Belanja  Rp. ' + paymentData.total.toLocaleString('id-ID') + '<br>');
+                notaWindow.document.write('Tunai  Rp. ' + paymentData.bayar.toLocaleString('id-ID') + '<br>');
+                notaWindow.document.write('Kembali  Rp. ' + paymentData.kembalian.toLocaleString('id-ID') + '</p>');
+                
+                // Garis pemisah
+                notaWindow.document.write('<hr>');
+                
+                // Pesan penutup
+                notaWindow.document.write('<p class="txt-center bold">Terima Kasih</p>');
+                
+                notaWindow.document.write('</div>');
                 notaWindow.document.write('</body></html>');
-    
+
                 notaWindow.document.close();
                 notaWindow.focus();
                 notaWindow.print();
                 notaWindow.close();
             }
-    
+
             function addStockEventListener(stockInput, barang) {
                 stockInput.addEventListener('input', function () {
                     var value = parseInt(this.value);

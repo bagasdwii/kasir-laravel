@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Total Beli</label>
-                                        <input type="number" name="totalHarga" id="totalHarga" class="form-control" placeholder="Total Beli" value="{{ $data1->totalHarga }}" readonly>
+                                        <input type="text" name="totalHarga" id="totalHarga" class="form-control" placeholder="Total Beli" value="{{ number_format($data1->totalHarga, 0, ',', '.') }}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -96,9 +96,9 @@
                                     <tr>
                                         <th> {{ $no++ }}</th>
                                         <td>{{ $detailpembelian->barang->namaBarang }}</td>
-                                        <td>{{ $detailpembelian->jumlah }}</td>
-                                        <td>{{ $detailpembelian->harga }}</td>
-                                        <td>{{ $detailpembelian->subTotal }}</td>
+                                        <td>{{ number_format($detailpembelian->jumlah, 0, ',', '.') }}</td>
+                                        <td>{{ number_format($detailpembelian->harga, 0, ',', '.') }}</td>
+                                        <td>{{ number_format($detailpembelian->subTotal, 0, ',', '.') }}</td>
                                         <td>
                                             
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$detailpembelian->id}}">

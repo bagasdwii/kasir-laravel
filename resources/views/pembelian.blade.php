@@ -78,7 +78,7 @@
                                         <td>{{ $pembelian->supplier->namaToko }}</td>
                                         <td>{{ $pembelian->noFaktur }}</td>
                                         <td>{{ $pembelian->tanggal }}</td>
-                                        <td>{{ $pembelian->totalHarga }}</td>
+                                        <td>{{ number_format($pembelian->totalHarga, 0, ',', '.') }}</td>
                                         <td>
                                             <a href="/detailpembelian/{{ $pembelian->id }}" class="btn btn-warning"> Detail </a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$pembelian->id}}">
