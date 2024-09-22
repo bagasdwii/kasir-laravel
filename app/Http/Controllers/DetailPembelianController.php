@@ -5,13 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Pembelian;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\DetailPembelian;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\DetailPembelianImport;
 use Illuminate\Support\Facades\Validator;
 
 class DetailPembelianController extends Controller
-    {
+{
+        public function uploadExcelPembelian(Request $request)
+        {
+            $request->validate([
+                'excelFile' => 'required|mimes:xls,xlsx',
+            ]);
+
+            $user_id = $request->user()->id;
+            $file = $request->file('excelFile');
+            $pembelian_id = $request->input('pembelian_id');
+            // Log informasi tentang file yang diunggah
+            Log::info('User ' . $user_id . ' mengupload file Excel untuk pembelian: ' . $file->getClientOriginalName());
+
+            try {
+                // Proses Excel untuk memperbarui stok
+                Excel::import(new DetailPembelianImport($user_id, $pembelian_id), $file);
+
+                // Log ketika impor selesai
+                Log::info('Impor pembelian berhasil dilakukan oleh user ' . $user_id);
+            } catch (\Exception $e) {
+                // Log jika terjadi error selama proses impor
+                Log::error('Gagal mengimpor pembelian: ' . $e->getMessage());
+                return redirect()->route('pembelian')->with('error', 'Gagal meng-upload data pembelian.');
+            }
+
+            return redirect()->route('pembelian')->with('success', 'Data pembelian berhasil di-upload.');
+        }
+
         public function detailpembelian($id)
         {
             // Mengambil user yang sedang login
