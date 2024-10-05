@@ -41,19 +41,33 @@ class BarangController extends Controller
     
         return redirect()->route('barang')->with('success', 'Data barang berhasil di-upload.');
     }
-    public function barang()
+    public function barang(Request $request)
     {
         // Periksa peran pengguna yang login
         $loggedInUser = Auth::user();
-
-        // Ambil semua data Barang tanpa filter user_id
-        $data = Barang::orderBy('created_at', 'desc')->get();
-        
+    
         // Ambil semua data Categori tanpa filter user_id
         $dCategori = Categori::all();
-
+    
+        // Ambil semua data Barang dan terapkan filter jika ada
+        $query = Barang::query();
+    
+        // Jika ada kategori yang dipilih
+        if ($request->has('categori_id') && $request->categori_id != '') {
+            $query->where('categori_id', $request->categori_id);
+        }
+    
+        // Jika ada pencarian berdasarkan nama barang
+        if ($request->has('search') && $request->search != '') {
+            $query->where('namaBarang', 'like', '%' . $request->search . '%');
+        }
+    
+        // Ambil data barang yang telah difilter
+        $data = $query->orderBy('created_at', 'desc')->get();
+    
         return view('barang', compact('data', 'loggedInUser', 'dCategori'));
     }
+    
 
     public function tambahbarang(Request $request){
         $user_id = $request->user()->id;

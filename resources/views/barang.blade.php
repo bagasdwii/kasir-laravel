@@ -64,6 +64,32 @@
                         
     
                         <div class="card-body ">
+                            <form id="search-form" method="GET" action="{{ route('barang') }}">
+                                @csrf
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <!-- Label untuk Kategori -->
+                                        <label for="category_id">Kategori</label>
+                                        <!-- Dropdown untuk Kategori -->
+                                        <select name="categori_id" id="category_id" class="form-control select2" style="width: 100%;">
+                                            <option selected="selected" value="">Semua Kategori</option>
+                                            @foreach ($dCategori as $categori)
+                                                <option value="{{ $categori->id }}">{{ $categori->namaCategori }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Label untuk Search Bar -->
+                                        <label for="search-bar">Cari Barang</label>
+                                        <!-- Search Bar -->
+                                        <input type="text" name="search" id="search-bar" class="form-control" placeholder="Cari barang...">
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-end">
+                                        <!-- Tombol Search -->
+                                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                                    </div>
+                                </div>
+                            </form>
                             
                             <table id="example2" class="table table-bordered table-hover" style="overflow: auto; ">
                                 <thead>
