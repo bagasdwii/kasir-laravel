@@ -6,50 +6,68 @@ use App\Models\User;
 use App\Models\Barang;
 use App\Models\Categori;
 use Illuminate\Http\Request;
+use App\Imports\BarangImport;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
 {
-    // public function barang()
-    // {
-    //     // Periksa peran pengguna yang login
-    //     $loggedInUser = Auth::user();
-        
-     
-    //         // Jika yang login adalah admin, filter barang berdasarkan user_id
-    //     $data = Barang::where('user_id', $loggedInUser->id)->orderBy('created_at', 'desc')->get(); 
-    //     if ($loggedInUser->role === 'staff') {
-    //         // Jika yang login adalah staff
-    //         $adminUser = User::where('role', 'admin')->where('email', $loggedInUser->owner)->first(); // Cari user admin yang memiliki email yang sama dengan owner staff
-    //         if ($adminUser) {
-    //             // Jika admin ditemukan
-    //             $data = Barang::where('user_id', $adminUser->id)->orderBy('created_at', 'desc')->get(); // Filter barang berdasarkan user_id admin
-    //         }
-    //         // Jika tidak ada admin yang cocok, maka $data tidak akan diatur
-    //     }
-
-    //     $dCategori = Categori::where('user_id', $loggedInUser->id)->get();
-
-    //     return view('barang', compact('data', 'loggedInUser', 'dCategori'));
-    // }
-
-
-    // }
-    public function barang()
+    public function uploadExcelBarang(Request $request)
+    {
+        $request->validate([
+            'excelFile' => 'required|mimes:xls,xlsx',
+        ]);
+    
+        $user_id = $request->user()->id;
+        $file = $request->file('excelFile');
+    
+        // Log informasi tentang file yang diunggah
+        Log::info('User ' . $user_id . ' mengupload file Excel: ' . $file->getClientOriginalName());
+    
+        try {
+            // Proses Excel dan masukkan ke database
+            Excel::import(new BarangImport($user_id), $file);
+    
+            // Log ketika impor selesai
+            Log::info('Impor barang berhasil dilakukan oleh user ' . $user_id);
+        } catch (\Exception $e) {
+            // Log jika terjadi error selama proses impor
+            Log::error('Gagal mengimpor barang: ' . $e->getMessage());
+            return redirect()->route('barang')->with('error', 'Gagal meng-upload data barang.');
+        }
+    
+        return redirect()->route('barang')->with('success', 'Data barang berhasil di-upload.');
+    }
+    public function barang(Request $request)
     {
         // Periksa peran pengguna yang login
         $loggedInUser = Auth::user();
-
-        // Ambil semua data Barang tanpa filter user_id
-        $data = Barang::orderBy('created_at', 'desc')->get();
-        
+    
         // Ambil semua data Categori tanpa filter user_id
         $dCategori = Categori::all();
-
+    
+        // Ambil semua data Barang dan terapkan filter jika ada
+        $query = Barang::query();
+    
+        // Jika ada kategori yang dipilih
+        if ($request->has('categori_id') && $request->categori_id != '') {
+            $query->where('categori_id', $request->categori_id);
+        }
+    
+        // Jika ada pencarian berdasarkan nama barang
+        if ($request->has('search') && $request->search != '') {
+            $query->where('namaBarang', 'like', '%' . $request->search . '%');
+        }
+    
+        // Ambil data barang yang telah difilter
+        $data = $query->orderBy('created_at', 'desc')->get();
+    
         return view('barang', compact('data', 'loggedInUser', 'dCategori'));
     }
+    
 
     public function tambahbarang(Request $request){
         $user_id = $request->user()->id;
@@ -61,10 +79,7 @@ class BarangController extends Controller
                 'required',
                 'string',
                 'max:255',
-                // Rule::unique('barangs')->where(function ($query) use ($user_id, $categori_id) {
-                //     return $query->where('user_id', $user_id)
-                //                  ->where('categori_id', $categori_id);
-                // }),
+ 
                 Rule::unique('barangs')
                     ->where('user_id', $user_id)
                     ->where('categori_id', $categori_id)
@@ -73,10 +88,7 @@ class BarangController extends Controller
                 'required',
                 'string',
                 'max:255',
-                // Rule::unique('barangs')->where(function ($query) use ($user_id, $categori_id) {
-                //     return $query->where('user_id', $user_id)
-                //                  ->where('categori_id', $categori_id);
-                // }),
+
                 Rule::unique('barangs')
                     ->where('user_id', $user_id)
                     ->where('categori_id', $categori_id)

@@ -103,7 +103,9 @@ Route::post('/filterpenjualan', [LaporanPenjualanController::class, 'filterpenju
 Route::get('/laporanpembelian', [LaporanPembelianController::class, 'laporanpembelian'])->name('laporanpembelian')->middleware('auth', 'admin');
 Route::post('/filterpembelian', [LaporanPembelianController::class, 'filterpembelian'])->name('filterpembelian');
 
+Route::post('/upload-excel', [BarangController::class, 'uploadExcelBarang'])->name('uploadExcelBarang');
 
+Route::post('/upload-excel-pembelian', [DetailPembelianController::class, 'uploadExcelPembelian'])->name('uploadExcelPembelian');
 
 
 

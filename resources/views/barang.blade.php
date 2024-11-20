@@ -44,7 +44,11 @@
                                 <div class="col">
                                     <h3 class="card-title">Data Barang</h3>
                                 </div>
-                                
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-upload-excel">
+                                        Upload Excel
+                                    </button>
+                                </div>
                                 <div class="col-auto">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg">
                                         Tambah Data
@@ -60,6 +64,32 @@
                         
     
                         <div class="card-body ">
+                            <form id="search-form" method="GET" action="{{ route('barang') }}">
+                                @csrf
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <!-- Label untuk Kategori -->
+                                        <label for="category_id">Kategori</label>
+                                        <!-- Dropdown untuk Kategori -->
+                                        <select name="categori_id" id="category_id" class="form-control select2" style="width: 100%;">
+                                            <option selected="selected" value="">Semua Kategori</option>
+                                            @foreach ($dCategori as $categori)
+                                                <option value="{{ $categori->id }}">{{ $categori->namaCategori }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Label untuk Search Bar -->
+                                        <label for="search-bar">Cari Barang</label>
+                                        <!-- Search Bar -->
+                                        <input type="text" name="search" id="search-bar" class="form-control" placeholder="Cari barang...">
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-end">
+                                        <!-- Tombol Search -->
+                                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                                    </div>
+                                </div>
+                            </form>
                             
                             <table id="example2" class="table table-bordered table-hover" style="overflow: auto; ">
                                 <thead>
@@ -198,6 +228,29 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modal-upload-excel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload Data Barang via Excel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('uploadExcelBarang') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="excelFile">Pilih file Excel</label>
+                            <input type="file" name="excelFile" id="excelFile" class="form-control" required accept=".xls,.xlsx">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
     <div class="modal fade" id="modal-lg-category">
         <div class="modal-dialog modal-lg">
